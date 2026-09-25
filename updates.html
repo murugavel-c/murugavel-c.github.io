@@ -9,18 +9,18 @@
 <style>
 /* Regulatory Atlas - premium 3D medical-tech concept */
 :root {
-    --bg: #05080f;
-    --bg-2: #080d16;
-    --ink: #e9eef5;
-    --ink-2: #93a0b4;
-    --ink-3: #5b6779;
-    --glass: rgba(255, 255, 255, 0.045);
-    --glass-edge: rgba(255, 255, 255, 0.09);
-    --accent: #2dd4bf;
-    --accent-dim: rgba(45, 212, 191, 0.35);
-    --cdsco: #c9a35c;
-    --fda: #c96a6a;
-    --eu: #6a8fc9;
+    --bg: #f4f6f9;
+    --bg-2: #eaeef3;
+    --ink: #16202b;
+    --ink-2: #4c5a68;
+    --ink-3: #8593a1;
+    --glass: rgba(255, 255, 255, 0.62);
+    --glass-edge: rgba(22, 32, 43, 0.10);
+    --accent: #0d9488;
+    --accent-dim: rgba(13, 148, 136, 0.38);
+    --cdsco: #a67c2e;
+    --fda: #b45555;
+    --eu: #4a6fa5;
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
     --sans: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
 }
@@ -39,8 +39,8 @@ a { color: inherit; }
 body::before {
     content: ""; position: fixed; inset: 0; z-index: -2;
     background:
-        radial-gradient(900px 600px at 75% -5%, rgba(45, 212, 191, 0.06), transparent 60%),
-        radial-gradient(800px 700px at 10% 110%, rgba(106, 143, 201, 0.05), transparent 60%),
+        radial-gradient(900px 600px at 75% -5%, rgba(13, 148, 136, 0.06), transparent 60%),
+        radial-gradient(800px 700px at 10% 110%, rgba(74, 111, 165, 0.05), transparent 60%),
         var(--bg);
 }
 
@@ -49,9 +49,9 @@ body::before {
     position: sticky; top: 0; z-index: 30;
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
     padding: 14px 22px;
-    background: rgba(5, 8, 15, 0.72);
+    background: rgba(244, 246, 249, 0.75);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(22, 32, 43, 0.08);
     font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--ink-3);
 }
@@ -61,7 +61,7 @@ body::before {
     padding: 6px 16px; white-space: nowrap;
     transition: background 0.2s ease;
 }
-.topbar a:hover { background: rgba(45, 212, 191, 0.08); }
+.topbar a:hover { background: rgba(13, 148, 136, 0.08); }
 
 /* ---- hero ---- */
 .hero {
@@ -90,7 +90,7 @@ body::before {
 .hero h1 .hollow {
     display: block;
     color: transparent;
-    -webkit-text-stroke: 1.5px rgba(233, 238, 245, 0.55);
+    -webkit-text-stroke: 1.5px rgba(22, 32, 43, 0.42);
 }
 .hero .sub {
     margin: 0 auto 30px; max-width: 560px;
@@ -111,10 +111,10 @@ body::before {
     color: var(--accent); text-decoration: none;
     border: 1px solid var(--accent-dim); border-radius: 999px;
     padding: 14px 42px;
-    background: rgba(45, 212, 191, 0.05);
+    background: rgba(13, 148, 136, 0.05);
     transition: background 0.25s ease, box-shadow 0.25s ease;
 }
-.btn-explore:hover { background: rgba(45, 212, 191, 0.12); box-shadow: 0 0 34px rgba(45, 212, 191, 0.18); }
+.btn-explore:hover { background: rgba(13, 148, 136, 0.12); box-shadow: 0 10px 34px rgba(13, 148, 136, 0.16); }
 
 /* ---- sections ---- */
 .section { max-width: 1100px; margin: 0 auto; padding: 80px 22px 30px; }
@@ -220,7 +220,7 @@ body::before {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--ink-3);
 }
-.auth-head .line { flex: 1; height: 1px; background: rgba(255,255,255,0.07); min-width: 40px; align-self: center; }
+.auth-head .line { flex: 1; height: 1px; background: rgba(22, 32, 43, 0.10); min-width: 40px; align-self: center; }
 .panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
 .panel {
     position: relative;
@@ -241,7 +241,7 @@ body::before {
 @media (prefers-reduced-motion: reduce) { .panel { animation: none; } }
 .panel:hover {
     border-color: var(--accent-dim);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 26px rgba(45, 212, 191, 0.07);
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12), 0 0 26px rgba(13, 148, 136, 0.08);
 }
 .panel-top {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
@@ -252,9 +252,9 @@ body::before {
     letter-spacing: 0.1em; text-transform: uppercase;
     border: 1px solid; border-radius: 999px; padding: 3px 11px;
 }
-.chip-auth.cdsco { color: var(--cdsco); border-color: rgba(201, 163, 92, 0.4); }
-.chip-auth.fda { color: var(--fda); border-color: rgba(201, 106, 106, 0.4); }
-.chip-auth.eu { color: var(--eu); border-color: rgba(106, 143, 201, 0.4); }
+.chip-auth.cdsco { color: var(--cdsco); border-color: rgba(166, 124, 46, 0.45); }
+.chip-auth.fda { color: var(--fda); border-color: rgba(180, 85, 85, 0.45); }
+.chip-auth.eu { color: var(--eu); border-color: rgba(74, 111, 165, 0.45); }
 .chip-status {
     margin-left: auto;
     font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
@@ -272,7 +272,7 @@ body::before {
 .datechip {
     font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--ink-3);
-    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 7px;
+    border: 1px solid rgba(22, 32, 43, 0.12); border-radius: 7px;
     padding: 4px 10px;
 }
 .link-explore {
@@ -287,7 +287,7 @@ body::before {
 .footer {
     max-width: 1100px; margin: 40px auto 0;
     padding: 26px 22px 46px;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid rgba(22, 32, 43, 0.10);
     display: flex; justify-content: space-between; gap: 8px 18px; flex-wrap: wrap;
     font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--ink-3);
@@ -503,25 +503,25 @@ body::before {
         var hCam = new THREE.PerspectiveCamera(50, 2, 0.1, 100);
         hCam.position.set(0, 0.4, 9.2);
 
-        hScene.add(new THREE.AmbientLight(0x8899aa, 0.55));
+        hScene.add(new THREE.AmbientLight(0xffffff, 0.85));
         var key = new THREE.DirectionalLight(0xffffff, 0.65); key.position.set(4, 6, 6); hScene.add(key);
-        var rim = new THREE.PointLight(0x2dd4bf, 0.4, 26); rim.position.set(-6, -2, 4); hScene.add(rim);
+        var rim = new THREE.PointLight(0x0d9488, 0.35, 26); rim.position.set(-6, -2, 4); hScene.add(rim);
 
         var core = new THREE.Group();
         var knot = new THREE.Mesh(
             new THREE.TorusKnotGeometry(1.05, 0.3, 160, 24),
-            new THREE.MeshStandardMaterial({ color: 0x66788c, metalness: 0.85, roughness: 0.42 })
+            new THREE.MeshStandardMaterial({ color: 0xc0cdd8, metalness: 0.22, roughness: 0.5 })
         );
         core.add(knot);
         var cage = new THREE.Mesh(
             new THREE.IcosahedronGeometry(2.05, 1),
-            new THREE.MeshBasicMaterial({ color: 0x2dd4bf, wireframe: true, transparent: true, opacity: 0.16 })
+            new THREE.MeshBasicMaterial({ color: 0x0d9488, wireframe: true, transparent: true, opacity: 0.20 })
         );
         core.add(cage);
 
         var docs = new THREE.Group();
         var docGeo = new THREE.PlaneGeometry(0.42, 0.58);
-        var docMat = new THREE.MeshBasicMaterial({ color: 0xdde6f0, transparent: true, opacity: 0.06, side: THREE.DoubleSide });
+        var docMat = new THREE.MeshBasicMaterial({ color: 0x64748b, transparent: true, opacity: 0.10, side: THREE.DoubleSide });
         for (var i = 0; i < 16; i++) {
             var m = new THREE.Mesh(docGeo, docMat);
             var a = (i / 16) * Math.PI * 2;
@@ -540,8 +540,10 @@ body::before {
             pos[j * 3 + 2] = (Math.random() - 0.5) * 10;
         }
         pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-        var points = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x2dd4bf, size: 0.035, transparent: true, opacity: 0.5 }));
+        var points = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x0d9488, size: 0.04, transparent: true, opacity: 0.45 }));
         hScene.add(points);
+        core.scale.setScalar(0.66);
+        core.position.set(0, -0.85, -2.2);
         hScene.add(core);
 
         function sizeHero() {
@@ -559,7 +561,7 @@ body::before {
             if (!reduceMotion) {
                 core.rotation.y = t * 0.12;
                 core.rotation.x = Math.sin(t * 0.3) * 0.12;
-                core.position.y = Math.sin(t * 0.5) * 0.18;
+                core.position.y = -0.85 + Math.sin(t * 0.5) * 0.18;
                 docs.rotation.y = -t * 0.06;
                 points.rotation.y = t * 0.015;
             }
@@ -569,9 +571,9 @@ body::before {
 
     /* ---------- globe scene ---------- */
     var AUTHORITIES = {
-        fda:   { lat: 38.9, lon: -77.0, color: 0xc96a6a },
-        cdsco: { lat: 28.6, lon: 77.2,  color: 0xc9a35c },
-        eu:    { lat: 50.85, lon: 4.35, color: 0x6a8fc9 }
+        fda:   { lat: 38.9, lon: -77.0, color: 0xe07a7a },
+        cdsco: { lat: 28.6, lon: 77.2,  color: 0xd9a94e },
+        eu:    { lat: 50.85, lon: 4.35, color: 0x7fa3d9 }
     };
     var globeTarget = null, globeGroup = null;
 
@@ -602,7 +604,7 @@ body::before {
 
         var sphere = new THREE.Mesh(
             new THREE.SphereGeometry(R, 48, 48),
-            new THREE.MeshBasicMaterial({ color: 0x1b2635, wireframe: true, transparent: true, opacity: 0.5 })
+            new THREE.MeshBasicMaterial({ color: 0x2b3b4e, wireframe: true, transparent: true, opacity: 0.55 })
         );
         globeGroup.add(sphere);
         var inner = new THREE.Mesh(
