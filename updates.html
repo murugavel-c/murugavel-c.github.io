@@ -3,242 +3,275 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Regulatory Updates - Murugavel C</title>
-<meta name="description" content="A date-wise bulletin of medical-device regulatory notifications (CDSCO, EU MDR, US FDA) with plain-language summaries and official links.">
+<title>QARA Regulatory Updates - Murugavel C</title>
+<meta name="description" content="An authority-wise feed of medical-device regulatory notifications (CDSCO, US FDA, EU MDR) with plain-language summaries and official links.">
 <style>
-/* Regulatory Updates - editorial bulletin. Own identity, distinct from the portfolio theme. */
+/* QARA Regulatory Updates - matches murugavel-c.github.io design language, authority-wise layout. */
 :root {
-    --paper: #f5f1e8;
-    --paper-deep: #efe9dc;
-    --ink: #1b1813;
-    --ink-2: #4f4839;
-    --ink-3: #857c68;
-    --rule: #d8d0bd;
-    --rule-dark: #1b1813;
-    --cdsco: #b45309;
-    --eu: #1e40af;
-    --fda: #9f1239;
-    --serif: Georgia, "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
+    --bg: #0b0d10;
+    --panel: #11151b;
+    --hairline: rgba(244, 242, 238, 0.09);
+    --ink: #f4f2ee;
+    --ink-2: #a3a19b;
+    --ink-3: #6d6c67;
+    --accent: #7fb5a6;
+    --gold: #d3ad5f;
+    --blue: #7ea4e0;
+    --red: #d68a8a;
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 }
 html { scroll-behavior: smooth; }
 html, body { margin: 0; min-height: 100%; }
 body {
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: var(--serif);
-    font-size: 16px; line-height: 1.65;
+    font-family: var(--ds-font-text, "KMR Melange Grotesk", -apple-system, "Helvetica Neue", Arial, sans-serif);
+    font-size: 15px; line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
 }
 a { color: inherit; }
 
-/* ---- top strip ---- */
-.strip {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    padding: 12px 20px;
-    border-bottom: 1px solid var(--rule);
-    font-family: var(--mono); font-size: 11.5px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-3);
+/* ---- nav ---- */
+.nav {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px;
+    background: rgba(11, 13, 16, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hairline);
 }
-.strip a { color: var(--ink-2); text-decoration: none; white-space: nowrap; }
-.strip a:hover { color: var(--ink); }
-.strip .dot { color: var(--rule); }
+.brand { font-weight: 600; font-size: 18px; letter-spacing: 0.02em; text-decoration: none; }
+.brand-dot, .accent { color: var(--accent); }
+.nav-links { display: flex; gap: 18px; align-items: center; }
+.nav-links a {
+    color: var(--ink-2); text-decoration: none; font-size: 13px;
+    letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
+    min-height: 40px; display: inline-flex; align-items: center;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+    color: var(--accent) !important;
+    border: 1px solid rgba(127, 181, 166, 0.4);
+    border-radius: 999px; padding: 0 16px;
+}
 
-/* ---- masthead ---- */
-.masthead {
-    max-width: 980px; margin: 0 auto;
-    padding: 44px 20px 30px;
-    border-bottom: 3px double var(--rule-dark);
-    text-align: center;
+/* ---- header ---- */
+.page-head { padding: 72px 20px 24px; max-width: 1080px; margin: 0 auto; }
+.eyebrow {
+    font-family: var(--mono); font-size: 12.5px; color: var(--accent);
+    letter-spacing: 0.06em; margin: 0 0 20px;
 }
-.kicker {
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--ink-3);
-    margin: 0 0 18px;
+.page-title {
+    margin: 0 0 24px; font-size: clamp(34px, 6.5vw, 72px);
+    line-height: 1.02; font-weight: 600; letter-spacing: -0.02em;
+    text-transform: uppercase;
 }
-.title {
+.page-title em {
+    font-style: normal;
+    background: linear-gradient(100deg, var(--accent) 10%, rgba(127, 181, 166, 0.55) 90%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+}
+.para { color: var(--ink-2); max-width: 640px; margin: 0 0 22px; font-size: 15.5px; }
+.contents {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px;
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.contents .label { color: var(--ink-3); font-size: 11.5px; }
+.contents a {
+    text-decoration: none; font-weight: 600;
+    border: 1px solid; border-radius: 999px; padding: 4px 14px;
+    transition: opacity 0.15s ease;
+}
+.contents a:hover { opacity: 0.75; }
+.contents a.c-cdsco { color: var(--gold); border-color: rgba(211, 173, 95, 0.45); }
+.contents a.c-fda   { color: var(--red);  border-color: rgba(214, 138, 138, 0.45); }
+.contents a.c-eu    { color: var(--blue); border-color: rgba(126, 164, 224, 0.45); }
+
+/* ---- authority sections ---- */
+.feed { padding: 0 20px 72px; max-width: 1080px; margin: 0 auto; }
+.authority { padding-top: 30px; }
+.authority-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 8px 18px; flex-wrap: wrap;
+    padding-bottom: 14px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--hairline);
+}
+.authority-name {
     margin: 0;
-    font-size: clamp(40px, 8.5vw, 84px);
-    line-height: 0.98; font-weight: 400;
-    letter-spacing: -0.015em;
+    font-size: clamp(26px, 4.5vw, 40px); line-height: 1.05; font-weight: 600;
+    letter-spacing: -0.015em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px;
 }
-.title em { font-style: italic; }
-.dateline {
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 18px;
-    margin-top: 22px;
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em;
+.authority-name .tag {
+    width: 11px; height: 11px; border-radius: 3px;
+    display: inline-block; flex: none;
+}
+.tag-cdsco { background: var(--gold); }
+.tag-fda   { background: var(--red); }
+.tag-eu    { background: var(--blue); }
+.authority-sub {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--ink-3);
-}
-.standfirst {
-    margin: 26px auto 0; max-width: 620px;
-    font-size: 17px; font-style: italic; color: var(--ink-2);
+    white-space: nowrap;
 }
 
-/* ---- bulletin feed ---- */
-.bulletin { max-width: 980px; margin: 0 auto; padding: 10px 20px 60px; }
-.entry {
-    display: grid; grid-template-columns: 128px 1fr; gap: 8px 28px;
-    padding: 34px 0;
-    border-bottom: 1px solid var(--rule);
+/* ---- entries ---- */
+.update {
+    border: 1px solid var(--hairline); border-radius: 16px;
+    background: var(--panel);
+    padding: 24px 22px; margin-bottom: 16px;
+    transition: border-color 0.2s ease;
 }
-.entry:last-of-type { border-bottom: none; }
-.entry-date { text-align: right; padding-top: 5px; }
-.entry-date .day {
-    display: block;
-    font-size: 46px; line-height: 1; font-weight: 400; letter-spacing: -0.02em;
+.update:hover { border-color: rgba(127, 181, 166, 0.35); }
+.update-top {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 14px;
 }
-.entry-date .month {
-    display: block; margin-top: 6px;
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--ink-3);
+.badge {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid; border-radius: 999px; padding: 3px 12px;
+    white-space: nowrap;
 }
-.stamp {
-    display: inline-block;
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em;
-    text-transform: uppercase; font-weight: 600;
-    border: 1.5px solid; border-radius: 3px; padding: 3px 9px 2px;
-    margin-bottom: 12px;
-    transform: rotate(-1deg);
+.badge-cdsco { color: var(--gold); border-color: rgba(211, 173, 95, 0.45); }
+.badge-eu    { color: var(--blue); border-color: rgba(126, 164, 224, 0.45); }
+.badge-fda   { color: var(--red);  border-color: rgba(214, 138, 138, 0.45); }
+.update-date { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); letter-spacing: 0.04em; }
+.update-title { margin: 0 0 8px; font-size: 19px; font-weight: 600; line-height: 1.3; }
+.update-summary { margin: 0 0 14px; color: var(--ink-2); font-size: 15px; max-width: 720px; }
+.update-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600;
+    word-break: break-all;
 }
-.stamp-eu    { color: var(--eu);    border-color: var(--eu); }
-.stamp-fda   { color: var(--fda);   border-color: var(--fda); }
-.stamp-cdsco { color: var(--cdsco); border-color: var(--cdsco); }
-.entry-title {
-    margin: 0 0 10px;
-    font-size: clamp(21px, 3.2vw, 27px); line-height: 1.22; font-weight: 400;
-}
-.entry-summary {
-    margin: 0 0 16px; max-width: 640px;
-    color: var(--ink-2); font-size: 15.5px;
-}
-.entry-link {
-    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em;
-    text-transform: uppercase; font-weight: 600;
-    color: var(--ink); text-decoration: none;
-    border-bottom: 1.5px solid var(--rule-dark);
-    padding-bottom: 2px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-    word-break: break-word;
-}
-.entry-link:hover { color: var(--fda); border-color: var(--fda); }
+.update-link:hover { text-decoration: underline; }
+.update-link span { font-size: 16px; }
 
-/* ---- colophon ---- */
-.colophon {
-    border-top: 3px double var(--rule-dark);
-    max-width: 980px; margin: 0 auto;
-    padding: 22px 20px 44px;
-    display: flex; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap;
-    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-3);
+/* ---- footer ---- */
+.footer {
+    border-top: 1px solid var(--hairline);
+    padding: 24px 20px 40px;
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    color: var(--ink-3); font-size: 12.5px; font-family: var(--mono);
+    max-width: 1080px; margin: 0 auto;
 }
-.colophon a { color: var(--ink-2); text-decoration: none; }
-.colophon a:hover { color: var(--ink); }
+.footer a { color: var(--ink-2); text-decoration: none; }
+.footer a:hover { color: var(--ink); }
 
 @media (min-width: 640px) {
-    .strip { padding: 14px 36px; }
-    .masthead, .bulletin, .colophon { padding-left: 36px; padding-right: 36px; }
+    .nav { padding: 16px 32px; }
+    .page-head, .feed, .footer { padding-left: 32px; padding-right: 32px; }
 }
-@media (max-width: 639px) {
-    .entry { grid-template-columns: 1fr; gap: 14px; }
-    .entry-date { text-align: left; padding-top: 0; }
-    .entry-date .day { display: inline; font-size: 30px; }
-    .entry-date .month { display: inline; margin-left: 8px; }
+@media (min-width: 900px) {
+    .page-head { padding-top: 96px; }
+    .update { padding: 28px 30px; }
 }
 </style>
 </head>
 <body>
 
-<div class="strip">
-    <a href="index.html">&larr; Murugavel C - Portfolio</a>
-    <span>Medical Device QARA <span class="dot">&middot;</span> Chennai</span>
-</div>
-
-<header class="masthead">
-    <p class="kicker">A bulletin on medical-device regulation</p>
-    <h1 class="title">Regulatory <em>Updates.</em></h1>
-    <div class="dateline">
-        <span>Vol. 01</span>
-        <span>&middot;</span>
-        <span>September 2026</span>
-        <span>&middot;</span>
-        <span>Newest first</span>
+<nav class="nav">
+    <a class="brand" href="index.html">MC<span class="brand-dot">.</span></a>
+    <div class="nav-links">
+        <a class="nav-cta" href="index.html">&larr; Portfolio</a>
     </div>
-    <p class="standfirst">Notifications and guidance from CDSCO, the EU and the US FDA that I track as part of my QARA work - what changed, why it matters, and the official source.</p>
+</nav>
+
+<header class="page-head">
+    <p class="eyebrow">// QARA Regulatory Updates</p>
+    <h1 class="page-title">Regulatory <em>Updates.</em></h1>
+    <p class="para">Notifications and guidance from CDSCO, the US FDA and the EU that I track as part of my QARA work - what changed, why it matters, and the official source. Authority-wise, newest first inside each section.</p>
+    <nav class="contents">
+        <span class="label">Jump to</span>
+        <a class="c-cdsco" href="#cdsco">CDSCO</a>
+        <a class="c-fda" href="#fda">US FDA</a>
+        <a class="c-eu" href="#eu">EU MDR / IVDR</a>
+    </nav>
 </header>
 
-<main class="bulletin">
-<!-- ==== PREPEND NEW ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
+<main class="feed">
 
-    <article class="entry">
-        <div class="entry-date">
-            <span class="day">9</span>
-            <span class="month">Sep 2026</span>
+    <section class="authority" id="cdsco">
+        <div class="authority-head">
+            <h2 class="authority-name">CDSCO <span class="tag tag-cdsco"></span></h2>
+            <span class="authority-sub">India &middot; 2 notices</span>
         </div>
-        <div>
-            <span class="stamp stamp-eu">EU MDR / IVDR</span>
-            <h2 class="entry-title">MDCG 2020-16 rev.5 - IVDR classification guidance updated</h2>
-            <p class="entry-summary">The MDCG revised its guidance on the IVDR classification rules (Annex VIII) for in-vitro diagnostic devices. The revision clarifies how the IVD rules are applied in practice, which affects the risk class - and therefore the conformity-assessment route - of IVD products.</p>
-            <a class="entry-link" href="https://health.ec.europa.eu/latest-updates/mdcg-2020-16-rev5-guidance-classification-rules-vitro-diagnostic-medical-devices-under-regulation-eu-2026-09-09_en" target="_blank" rel="noreferrer">Read the official notice &rarr;</a>
-        </div>
-    </article>
+<!-- ==== PREPEND NEW CDSCO ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
 
-    <article class="entry">
-        <div class="entry-date">
-            <span class="day">9</span>
-            <span class="month">Sep 2026</span>
-        </div>
-        <div>
-            <span class="stamp stamp-fda">US FDA</span>
-            <h2 class="entry-title">CDRH town hall on biocompatibility risk assessment</h2>
-            <p class="entry-summary">FDA held a town hall discussing ISO 10993-1:2025 and risk-based selection of biocompatibility endpoints for device evaluation - relevant to how manufacturers plan biological evaluation within a risk-management framework.</p>
-            <a class="entry-link" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/town-hall-biocompatibility-risk-assessment-09092026" target="_blank" rel="noreferrer">Read the official notice &rarr;</a>
-        </div>
-    </article>
+        <article class="update">
+            <div class="update-top">
+                <span class="badge badge-cdsco">CDSCO</span>
+                <span class="update-date">14 Aug 2026</span>
+            </div>
+            <h3 class="update-title">G.S.R. 743(E) - Medical Devices (Second Amendment) Rules, 2026</h3>
+            <p class="update-summary">Devices sterilised at outsourced sites must carry the sterilization site's licence number on the label (after a six-month transition). The amendment also introduces the Ninth Schedule, a fee table for testing and evaluation activities.</p>
+            <a class="update-link" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20743(E)_Amendment%20in%20MD%20Rules,%202017%20for%20introduction%20of%20Ninth%20Schedule%20and%20labeling%20requirements%20for%20sterilization%20activities.pdf" target="_blank" rel="noreferrer">Official gazette notification (PDF) <span>&rarr;</span></a>
+        </article>
 
-    <article class="entry">
-        <div class="entry-date">
-            <span class="day">1</span>
-            <span class="month">Sep 2026</span>
-        </div>
-        <div>
-            <span class="stamp stamp-fda">US FDA</span>
-            <h2 class="entry-title">New 510(k) submission guidances for two dental device types</h2>
-            <p class="entry-summary">CDRH issued 510(k) submission guidances covering dental curing lights and dental composite resin devices, describing the performance testing and documentation FDA expects in premarket notifications for these products.</p>
-            <a class="entry-link" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/cdrh-new-news-and-updates" target="_blank" rel="noreferrer">Read the official notice &rarr;</a>
-        </div>
-    </article>
+        <article class="update">
+            <div class="update-top">
+                <span class="badge badge-cdsco">CDSCO</span>
+                <span class="update-date">14 Aug 2026</span>
+            </div>
+            <h3 class="update-title">G.S.R. 744(E) - Medical Devices (Third Amendment) Rules, 2026</h3>
+            <p class="update-summary">Rule 63 is amended to include European Union countries after Japan in the list of accepted reference markets, and QMS provisions for Class A non-sterile, non-measuring (NSNM) devices are added in Rules 19H and 19J.</p>
+            <a class="update-link" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20744(E)_Amendment%20in%20MD%20Rules,%202017%20for%20inclusion%20of%20EU%20countries%20in%20Rule%2063%20QMS%20requirements%20for%20Class%20A%20NSNM.pdf" target="_blank" rel="noreferrer">Official gazette notification (PDF) <span>&rarr;</span></a>
+        </article>
+    </section>
 
-    <article class="entry">
-        <div class="entry-date">
-            <span class="day">14</span>
-            <span class="month">Aug 2026</span>
+    <section class="authority" id="fda">
+        <div class="authority-head">
+            <h2 class="authority-name">US FDA <span class="tag tag-fda"></span></h2>
+            <span class="authority-sub">United States &middot; 2 notices</span>
         </div>
-        <div>
-            <span class="stamp stamp-cdsco">CDSCO</span>
-            <h2 class="entry-title">G.S.R. 743(E) - Medical Devices (Second Amendment) Rules, 2026</h2>
-            <p class="entry-summary">Devices sterilised at outsourced sites must carry the sterilization site's licence number on the label (after a six-month transition). The amendment also introduces the Ninth Schedule, a fee table for testing and evaluation activities.</p>
-            <a class="entry-link" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20743(E)_Amendment%20in%20MD%20Rules,%202017%20for%20introduction%20of%20Ninth%20Schedule%20and%20labeling%20requirements%20for%20sterilization%20activities.pdf" target="_blank" rel="noreferrer">Gazette notification (PDF) &rarr;</a>
-        </div>
-    </article>
+<!-- ==== PREPEND NEW FDA ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
 
-    <article class="entry">
-        <div class="entry-date">
-            <span class="day">14</span>
-            <span class="month">Aug 2026</span>
+        <article class="update">
+            <div class="update-top">
+                <span class="badge badge-fda">US FDA</span>
+                <span class="update-date">9 Sep 2026</span>
+            </div>
+            <h3 class="update-title">CDRH town hall on biocompatibility risk assessment</h3>
+            <p class="update-summary">FDA held a town hall discussing ISO 10993-1:2025 and risk-based selection of biocompatibility endpoints for device evaluation - relevant to how manufacturers plan biological evaluation within a risk-management framework.</p>
+            <a class="update-link" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/town-hall-biocompatibility-risk-assessment-09092026" target="_blank" rel="noreferrer">Official source <span>&rarr;</span></a>
+        </article>
+
+        <article class="update">
+            <div class="update-top">
+                <span class="badge badge-fda">US FDA</span>
+                <span class="update-date">1 Sep 2026</span>
+            </div>
+            <h3 class="update-title">New 510(k) submission guidances for two dental device types</h3>
+            <p class="update-summary">CDRH issued 510(k) submission guidances covering dental curing lights and dental composite resin devices, describing the performance testing and documentation FDA expects in premarket notifications for these products.</p>
+            <a class="update-link" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/cdrh-new-news-and-updates" target="_blank" rel="noreferrer">Official source <span>&rarr;</span></a>
+        </article>
+    </section>
+
+    <section class="authority" id="eu">
+        <div class="authority-head">
+            <h2 class="authority-name">EU MDR / IVDR <span class="tag tag-eu"></span></h2>
+            <span class="authority-sub">European Union &middot; 1 notice</span>
         </div>
-        <div>
-            <span class="stamp stamp-cdsco">CDSCO</span>
-            <h2 class="entry-title">G.S.R. 744(E) - Medical Devices (Third Amendment) Rules, 2026</h2>
-            <p class="entry-summary">Rule 63 is amended to include European Union countries after Japan in the list of accepted reference markets, and QMS provisions for Class A non-sterile, non-measuring (NSNM) devices are added in Rules 19H and 19J.</p>
-            <a class="entry-link" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20744(E)_Amendment%20in%20MD%20Rules,%202017%20for%20inclusion%20of%20EU%20countries%20in%20Rule%2063%20QMS%20requirements%20for%20Class%20A%20NSNM.pdf" target="_blank" rel="noreferrer">Gazette notification (PDF) &rarr;</a>
-        </div>
-    </article>
+<!-- ==== PREPEND NEW EU ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
+
+        <article class="update">
+            <div class="update-top">
+                <span class="badge badge-eu">EU MDR / IVDR</span>
+                <span class="update-date">9 Sep 2026</span>
+            </div>
+            <h3 class="update-title">MDCG 2020-16 rev.5 - IVDR classification guidance updated</h3>
+            <p class="update-summary">The MDCG revised its guidance on the IVDR classification rules (Annex VIII) for in-vitro diagnostic devices. The revision clarifies how the IVD rules are applied in practice, which affects the risk class - and therefore the conformity-assessment route - of IVD products.</p>
+            <a class="update-link" href="https://health.ec.europa.eu/latest-updates/mdcg-2020-16-rev5-guidance-classification-rules-vitro-diagnostic-medical-devices-under-regulation-eu-2026-09-09_en" target="_blank" rel="noreferrer">Official source <span>&rarr;</span></a>
+        </article>
+    </section>
 
 </main>
 
-<footer class="colophon">
+<footer class="footer">
     <span>Updated daily from official sources.</span>
     <a href="index.html">Murugavel C - QARA, Chennai</a>
 </footer>
