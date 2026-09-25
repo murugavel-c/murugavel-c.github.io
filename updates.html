@@ -3,23 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QARA Regulatory Updates - Murugavel C</title>
-<meta name="description" content="An authority-wise feed of medical-device regulatory notifications (CDSCO, US FDA, EU MDR) with plain-language summaries and official links.">
+<title>Regulatory Atlas - Murugavel C</title>
+<meta name="description" content="A visual intelligence layer for the evolving medical-device regulatory landscape - CDSCO, US FDA, EU MDR/IVDR updates with official sources.">
 <meta name="robots" content="noindex, nofollow">
 <style>
-/* Concept B - bold color-band timeline */
+/* Regulatory Atlas - premium 3D medical-tech concept */
 :root {
-    --bg: #f6f4ee;
-    --ink: #1c1a16;
-    --ink-2: #5d584c;
-    --cdsco: #8f6b3d;
-    --cdsco-deep: #6f5330;
-    --fda: #93423c;
-    --fda-deep: #743530;
-    --eu: #41607a;
-    --eu-deep: #324a5e;
+    --bg: #05080f;
+    --bg-2: #080d16;
+    --ink: #e9eef5;
+    --ink-2: #93a0b4;
+    --ink-3: #5b6779;
+    --glass: rgba(255, 255, 255, 0.045);
+    --glass-edge: rgba(255, 255, 255, 0.09);
+    --accent: #2dd4bf;
+    --accent-dim: rgba(45, 212, 191, 0.35);
+    --cdsco: #c9a35c;
+    --fda: #c96a6a;
+    --eu: #6a8fc9;
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-    --sans: -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --sans: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
 }
 html { scroll-behavior: smooth; }
 html, body { margin: 0; min-height: 100%; }
@@ -27,251 +30,660 @@ body {
     background: var(--bg);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 15.5px; line-height: 1.6;
+    font-size: 15.5px; line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 a { color: inherit; }
-.wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px 70px; }
+body::before {
+    content: ""; position: fixed; inset: 0; z-index: -2;
+    background:
+        radial-gradient(900px 600px at 75% -5%, rgba(45, 212, 191, 0.06), transparent 60%),
+        radial-gradient(800px 700px at 10% 110%, rgba(106, 143, 201, 0.05), transparent 60%),
+        var(--bg);
+}
 
-/* header */
+/* ---- top bar ---- */
 .topbar {
+    position: sticky; top: 0; z-index: 30;
     display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    padding: 18px 0;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+    padding: 14px 22px;
+    background: rgba(5, 8, 15, 0.72);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-3);
+}
+.topbar a {
+    color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent-dim); border-radius: 999px;
+    padding: 6px 16px; white-space: nowrap;
+    transition: background 0.2s ease;
+}
+.topbar a:hover { background: rgba(45, 212, 191, 0.08); }
+
+/* ---- hero ---- */
+.hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex; align-items: center;
+    padding: 60px 22px 40px;
+}
+#hero-canvas {
+    position: absolute; inset: 0; z-index: -1;
+    width: 100%; height: 100%;
+}
+.no3d #hero-canvas, .no3d #globe-canvas { display: none; }
+.hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; text-align: center; }
+.kicker {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.34em;
+    text-transform: uppercase; color: var(--accent);
+    margin: 0 0 22px;
+}
+.hero h1 {
+    margin: 0 0 20px;
+    font-size: clamp(46px, 9vw, 108px);
+    line-height: 0.96; font-weight: 800; letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+.hero h1 .hollow {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(233, 238, 245, 0.55);
+}
+.hero .sub {
+    margin: 0 auto 30px; max-width: 560px;
+    color: var(--ink-2); font-size: 16.5px;
+}
+.hero .sub em { font-style: normal; color: var(--ink); }
+.hero-markers {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 26px;
+    margin-bottom: 38px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
     text-transform: uppercase; color: var(--ink-2);
 }
-.topbar a { text-decoration: none; font-weight: 700; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
-.topbar a:hover { opacity: .65; }
-.hero { padding: 46px 0 34px; }
-.hero h1 {
-    margin: 0 0 16px;
-    font-size: clamp(38px, 7.5vw, 76px); line-height: 0.98;
-    font-weight: 800; letter-spacing: -0.03em; text-transform: uppercase;
+.hero-markers .dot { color: var(--accent); }
+.btn-explore {
+    display: inline-block;
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent-dim); border-radius: 999px;
+    padding: 14px 42px;
+    background: rgba(45, 212, 191, 0.05);
+    transition: background 0.25s ease, box-shadow 0.25s ease;
 }
-.hero h1 .row2 { display: block; color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
-.hero p { margin: 0 0 26px; max-width: 600px; color: var(--ink-2); font-size: 16px; }
-.jump { display: flex; flex-wrap: wrap; gap: 10px; }
-.jump a {
-    font-family: var(--mono); font-size: 12.5px; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: #fff; text-decoration: none;
-    padding: 8px 18px; border-radius: 999px;
-    transition: transform .15s ease;
+.btn-explore:hover { background: rgba(45, 212, 191, 0.12); box-shadow: 0 0 34px rgba(45, 212, 191, 0.18); }
+
+/* ---- sections ---- */
+.section { max-width: 1100px; margin: 0 auto; padding: 80px 22px 30px; }
+.sec-label {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--ink-3);
+    margin: 0 0 12px;
 }
-.jump a:hover { transform: translateY(-2px); }
-.jump .c-cdsco { background: var(--cdsco); }
-.jump .c-fda { background: var(--fda); }
-.jump .c-eu { background: var(--eu); }
+.sec-label b { color: var(--accent); font-weight: 700; }
+.sec-title {
+    margin: 0 0 14px;
+    font-size: clamp(28px, 4.6vw, 46px); font-weight: 800;
+    letter-spacing: -0.02em; text-transform: uppercase; line-height: 1.05;
+}
+.sec-note { margin: 0 0 40px; color: var(--ink-2); max-width: 620px; }
 
+/* ---- globe ---- */
+.globe-wrap {
+    display: grid; grid-template-columns: 1fr; gap: 26px;
+    align-items: center;
+}
+.globe-stage {
+    position: relative;
+    border: 1px solid var(--glass-edge); border-radius: 24px;
+    background: var(--glass);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+#globe-canvas { display: block; width: 100%; height: 460px; }
+.globe-fallback {
+    display: none; height: 460px;
+    align-items: center; justify-content: center; text-align: center;
+    color: var(--ink-3); font-family: var(--mono); font-size: 13px;
+    letter-spacing: 0.1em; padding: 30px;
+}
+.no3d .globe-fallback { display: flex; }
+.marker-list { display: flex; flex-direction: column; gap: 12px; }
+.marker-btn {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; text-align: left; cursor: pointer;
+    background: var(--glass); border: 1px solid var(--glass-edge);
+    border-radius: 16px; padding: 16px 18px;
+    color: var(--ink); font-family: var(--sans); font-size: 15px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.marker-btn:hover { border-color: var(--accent-dim); transform: translateX(4px); }
+.marker-btn .mdot {
+    width: 10px; height: 10px; border-radius: 50%; flex: none;
+    box-shadow: 0 0 12px currentColor;
+}
+.marker-btn .mname { font-weight: 700; letter-spacing: 0.02em; }
+.marker-btn .mregion {
+    margin-left: auto; font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+    white-space: nowrap;
+}
+.mdot.cdsco { background: var(--cdsco); color: var(--cdsco); }
+.mdot.fda { background: var(--fda); color: var(--fda); }
+.mdot.eu { background: var(--eu); color: var(--eu); }
 
-/* stats dashboard */
-.dash {
+/* ---- stats ---- */
+.stats {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
-    margin: 34px 0 0;
+    margin-bottom: 54px;
 }
 .stat {
-    background: #fffdf8;
-    border: 2px solid var(--ink); border-radius: 14px;
-    padding: 16px 18px 14px;
+    background: var(--glass); border: 1px solid var(--glass-edge);
+    border-radius: 16px; padding: 18px 20px 16px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .stat .num {
-    display: block; font-size: clamp(28px, 4vw, 38px); font-weight: 800;
+    display: block; font-size: clamp(26px, 3.6vw, 36px); font-weight: 800;
     line-height: 1; letter-spacing: -0.02em;
 }
 .stat .lbl {
-    display: block; margin-top: 8px;
-    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-2);
+    display: block; margin-top: 9px;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-3);
 }
-.stat.cdsco .num { color: var(--cdsco-deep); }
-.stat.fda .num { color: var(--fda-deep); }
-.stat.eu .num { color: var(--eu-deep); }
-@media (max-width: 639px) {
-    .dash { grid-template-columns: repeat(2, 1fr); }
-}
+.stat.cdsco .num { color: var(--cdsco); }
+.stat.fda .num { color: var(--fda); }
+.stat.eu .num { color: var(--eu); }
 
-/* authority bands */
-.band {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px 18px; flex-wrap: wrap;
-    margin: 44px 0 0; padding: 18px 24px;
-    border-radius: 18px 18px 0 0;
-    color: #fff;
+/* ---- authority groups + glass panels ---- */
+.auth-group { margin-bottom: 46px; }
+.auth-head {
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    margin-bottom: 20px;
 }
-.band.cdsco { background: linear-gradient(105deg, var(--cdsco) 0%, var(--cdsco-deep) 100%); }
-.band.fda { background: linear-gradient(105deg, var(--fda) 0%, var(--fda-deep) 100%); }
-.band.eu { background: linear-gradient(105deg, var(--eu) 0%, var(--eu-deep) 100%); }
-.band h2 {
-    margin: 0; font-size: clamp(24px, 4.5vw, 36px); font-weight: 800;
-    letter-spacing: -0.015em; text-transform: uppercase;
+.auth-head h3 {
+    margin: 0; font-size: clamp(20px, 3vw, 26px); font-weight: 800;
+    letter-spacing: 0.01em; text-transform: uppercase;
 }
-.band .meta {
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
-    text-transform: uppercase; opacity: .9; white-space: nowrap;
+.auth-head .adot {
+    width: 11px; height: 11px; border-radius: 50%;
+    align-self: center; flex: none;
+    box-shadow: 0 0 14px currentColor;
 }
-.stack {
-    border: 2px solid var(--ink);
-    border-top: none;
-    border-radius: 0 0 18px 18px;
-    background: #fffdf8;
-    padding: 10px 24px 14px;
+.adot.cdsco { background: var(--cdsco); color: var(--cdsco); }
+.adot.fda { background: var(--fda); color: var(--fda); }
+.adot.eu { background: var(--eu); color: var(--eu); }
+.auth-head .count {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-3);
 }
-
-/* timeline entries */
-.tl { position: relative; }
-.entry {
+.auth-head .line { flex: 1; height: 1px; background: rgba(255,255,255,0.07); min-width: 40px; align-self: center; }
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.panel {
     position: relative;
-    padding: 26px 0 26px 34px;
-    border-bottom: 1px dashed #ddd7c8;
+    background: var(--glass);
+    border: 1px solid var(--glass-edge);
+    border-radius: 20px;
+    padding: 22px 22px 20px;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    animation: floaty 8s ease-in-out infinite;
 }
-.entry:last-child { border-bottom: none; }
-.entry::before {
-    content: ""; position: absolute; left: 7px; top: 36px;
-    width: 13px; height: 13px; border-radius: 50%;
-    border: 3px solid #fffdf8; box-shadow: 0 0 0 2px #cfc9ba;
+.panels .panel:nth-child(2n) { animation-delay: -2.5s; }
+.panels .panel:nth-child(3n) { animation-delay: -5s; }
+@keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
-.entry.cdsco::before { background: var(--cdsco); }
-.entry.fda::before { background: var(--fda); }
-.entry.eu::before { background: var(--eu); }
-.entry::after {
-    content: ""; position: absolute; left: 13px; top: 56px; bottom: 0;
-    width: 1px; background: #ddd7c8;
+@media (prefers-reduced-motion: reduce) { .panel { animation: none; } }
+.panel:hover {
+    border-color: var(--accent-dim);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45), 0 0 26px rgba(45, 212, 191, 0.07);
 }
-.entry:last-child::after { display: none; }
+.panel-top {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.chip-auth {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid; border-radius: 999px; padding: 3px 11px;
+}
+.chip-auth.cdsco { color: var(--cdsco); border-color: rgba(201, 163, 92, 0.4); }
+.chip-auth.fda { color: var(--fda); border-color: rgba(201, 106, 106, 0.4); }
+.chip-auth.eu { color: var(--eu); border-color: rgba(106, 143, 201, 0.4); }
+.chip-status {
+    margin-left: auto;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+}
+.chip-status::before { content: "\25CF\00A0"; }
+.panel h4 {
+    margin: 0 0 10px; font-size: 17.5px; font-weight: 700;
+    line-height: 1.32; letter-spacing: -0.005em;
+}
+.panel p { margin: 0 0 18px; color: var(--ink-2); font-size: 14.5px; }
+.panel-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+}
 .datechip {
-    display: inline-block;
-    font-family: var(--mono); font-size: 11.5px; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    border: 1.5px solid var(--ink); border-radius: 6px;
-    padding: 3px 10px; margin-bottom: 10px;
-    background: var(--bg);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3);
+    border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 7px;
+    padding: 4px 10px;
 }
-.entry h3 { margin: 0 0 8px; font-size: 20px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
-.entry p { margin: 0 0 14px; color: var(--ink-2); max-width: 680px; }
-.entry a.src {
-    font-family: var(--mono); font-size: 12.5px; font-weight: 700;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    text-decoration: none; border-bottom: 2px solid; padding-bottom: 2px;
+.link-explore {
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
     word-break: break-word;
 }
-.entry.cdsco a.src { color: var(--cdsco-deep); border-color: var(--cdsco-deep); }
-.entry.fda a.src { color: var(--fda-deep); border-color: var(--fda-deep); }
-.entry.eu a.src { color: var(--eu-deep); border-color: var(--eu-deep); }
-.entry a.src:hover { opacity: .65; }
+.link-explore:hover { text-decoration: underline; }
 
-/* footer */
-.foot {
-    margin-top: 46px; padding: 20px 0 0;
-    border-top: 2px solid var(--ink);
-    display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--ink-2);
+/* ---- footer ---- */
+.footer {
+    max-width: 1100px; margin: 40px auto 0;
+    padding: 26px 22px 46px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex; justify-content: space-between; gap: 8px 18px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-3);
 }
-.foot a { text-decoration: none; font-weight: 700; color: var(--ink); }
-.foot a:hover { opacity: .65; }
+.footer a { color: var(--ink-2); text-decoration: none; }
+.footer a:hover { color: var(--accent); }
 
-@media (min-width: 700px) {
-    .wrap { padding-left: 36px; padding-right: 36px; }
-    .hero { padding-top: 64px; }
+@media (min-width: 860px) {
+    .globe-wrap { grid-template-columns: 1.5fr 1fr; }
+}
+@media (max-width: 639px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    #globe-canvas, .globe-fallback { height: 320px; }
+    .section { padding-top: 60px; }
 }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-    <div class="topbar">
-        <span>Murugavel C &middot; QARA &middot; Chennai</span>
-        <a href="index.html">&larr; Portfolio</a>
+<div class="topbar">
+    <span>Murugavel C &middot; QARA &middot; Chennai</span>
+    <a href="index.html">&larr; Portfolio</a>
+</div>
+
+<header class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-inner">
+        <p class="kicker">Regulatory Intelligence</p>
+        <h1>Regulatory<span class="hollow">Atlas.</span></h1>
+        <p class="sub"><em>A visual intelligence layer</em> for the evolving medical-device regulatory landscape - what changed, why it matters, and the official source.</p>
+        <div class="hero-markers">
+            <span><span class="dot">&#9679;</span> US FDA</span>
+            <span><span class="dot">&#9679;</span> CDSCO</span>
+            <span><span class="dot">&#9679;</span> EU MDR</span>
+        </div>
+        <a class="btn-explore" href="#landscape">Explore</a>
     </div>
+</header>
 
-    <header class="hero">
-        <h1>Regulatory<span class="row2">Updates.</span></h1>
-        <p>Medical-device notifications I track as part of my QARA work - what changed, why it matters, and the official source. Grouped by authority, newest first inside each.</p>
-        <nav class="jump">
-            <a class="c-cdsco" href="#cdsco">CDSCO</a>
-            <a class="c-fda" href="#fda">US FDA</a>
-            <a class="c-eu" href="#eu">EU MDR / IVDR</a>
-        </nav>
-    </header>
+<section class="section" id="landscape">
+    <p class="sec-label"><b>01</b> &mdash; Regulatory Landscape</p>
+    <h2 class="sec-title">One map, three authorities.</h2>
+    <p class="sec-note">Select a marker to rotate the globe and jump to that authority's latest notices.</p>
+    <div class="globe-wrap">
+        <div class="globe-stage">
+            <canvas id="globe-canvas"></canvas>
+            <div class="globe-fallback">GLOBAL FEED &middot; US FDA / CDSCO / EU MDR-IVDR<br>(interactive globe needs WebGL)</div>
+        </div>
+        <div class="marker-list">
+            <button class="marker-btn" data-auth="fda" data-target="fda">
+                <span class="mdot fda"></span>
+                <span class="mname">US FDA</span>
+                <span class="mregion">United States</span>
+            </button>
+            <button class="marker-btn" data-auth="cdsco" data-target="cdsco">
+                <span class="mdot cdsco"></span>
+                <span class="mname">CDSCO</span>
+                <span class="mregion">India</span>
+            </button>
+            <button class="marker-btn" data-auth="eu" data-target="eu">
+                <span class="mdot eu"></span>
+                <span class="mname">EU MDR / IVDR</span>
+                <span class="mregion">European Union</span>
+            </button>
+        </div>
+    </div>
+</section>
 
-    <section class="dash">
+<section class="section" id="feed">
+    <p class="sec-label"><b>02</b> &mdash; Update Feed</p>
+    <h2 class="sec-title">Regulatory updates.</h2>
+    <p class="sec-note">Grouped by authority, newest first inside each. Every entry stays as permanent history.</p>
+
+    <div class="stats">
 <!-- ==== DASHBOARD COUNTS: update in the same edit that prepends entries (append-only, counts only go up) ==== -->
         <div class="stat"><span class="num">5</span><span class="lbl">Total updates</span></div>
         <div class="stat cdsco"><span class="num">2</span><span class="lbl">CDSCO</span></div>
         <div class="stat fda"><span class="num">2</span><span class="lbl">US FDA</span></div>
         <div class="stat eu"><span class="num">1</span><span class="lbl">EU MDR / IVDR</span></div>
-    </section>
+    </div>
 
-    <section id="cdsco">
-        <div class="band cdsco">
-            <h2>CDSCO</h2>
-            <span class="meta">India &middot; 2 notices</span>
+    <div class="auth-group" id="cdsco">
+        <div class="auth-head">
+            <span class="adot cdsco"></span>
+            <h3>CDSCO</h3>
+            <span class="count">India &middot; 2 notices</span>
+            <span class="line"></span>
         </div>
-        <div class="stack tl">
+        <div class="panels">
 <!-- ==== PREPEND NEW CDSCO ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
 
-            <div class="entry cdsco">
-                <span class="datechip">14 Aug 2026</span>
-                <h3>G.S.R. 743(E) - Medical Devices (Second Amendment) Rules, 2026</h3>
+            <article class="panel">
+                <div class="panel-top">
+                    <span class="chip-auth cdsco">CDSCO</span>
+                    <span class="chip-status">Published</span>
+                </div>
+                <h4>G.S.R. 743(E) - Medical Devices (Second Amendment) Rules, 2026</h4>
                 <p>Devices sterilised at outsourced sites must carry the sterilization site's licence number on the label (after a six-month transition). The amendment also introduces the Ninth Schedule, a fee table for testing and evaluation activities.</p>
-                <a class="src" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20743(E)_Amendment%20in%20MD%20Rules,%202017%20for%20introduction%20of%20Ninth%20Schedule%20and%20labeling%20requirements%20for%20sterilization%20activities.pdf" target="_blank" rel="noreferrer">Gazette notification (PDF) &rarr;</a>
-            </div>
+                <div class="panel-foot">
+                    <span class="datechip">14 Aug 2026</span>
+                    <a class="link-explore" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20743(E)_Amendment%20in%20MD%20Rules,%202017%20for%20introduction%20of%20Ninth%20Schedule%20and%20labeling%20requirements%20for%20sterilization%20activities.pdf" target="_blank" rel="noreferrer">Explore &rarr;</a>
+                </div>
+            </article>
 
-            <div class="entry cdsco">
-                <span class="datechip">14 Aug 2026</span>
-                <h3>G.S.R. 744(E) - Medical Devices (Third Amendment) Rules, 2026</h3>
+            <article class="panel">
+                <div class="panel-top">
+                    <span class="chip-auth cdsco">CDSCO</span>
+                    <span class="chip-status">Published</span>
+                </div>
+                <h4>G.S.R. 744(E) - Medical Devices (Third Amendment) Rules, 2026</h4>
                 <p>Rule 63 is amended to include European Union countries after Japan in the list of accepted reference markets, and QMS provisions for Class A non-sterile, non-measuring (NSNM) devices are added in Rules 19H and 19J.</p>
-                <a class="src" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20744(E)_Amendment%20in%20MD%20Rules,%202017%20for%20inclusion%20of%20EU%20countries%20in%20Rule%2063%20QMS%20requirements%20for%20Class%20A%20NSNM.pdf" target="_blank" rel="noreferrer">Gazette notification (PDF) &rarr;</a>
-            </div>
+                <div class="panel-foot">
+                    <span class="datechip">14 Aug 2026</span>
+                    <a class="link-explore" href="https://www.cdsco.gov.in/opencms/resources/UploadCDSCOWeb/2018/UploadGazette_NotificationsFiles/2026.08.14%20G.S.R.%20744(E)_Amendment%20in%20MD%20Rules,%202017%20for%20inclusion%20of%20EU%20countries%20in%20Rule%2063%20QMS%20requirements%20for%20Class%20A%20NSNM.pdf" target="_blank" rel="noreferrer">Explore &rarr;</a>
+                </div>
+            </article>
         </div>
-    </section>
+    </div>
 
-    <section id="fda">
-        <div class="band fda">
-            <h2>US FDA</h2>
-            <span class="meta">United States &middot; 2 notices</span>
+    <div class="auth-group" id="fda">
+        <div class="auth-head">
+            <span class="adot fda"></span>
+            <h3>US FDA</h3>
+            <span class="count">United States &middot; 2 notices</span>
+            <span class="line"></span>
         </div>
-        <div class="stack tl">
+        <div class="panels">
 <!-- ==== PREPEND NEW FDA ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
 
-            <div class="entry fda">
-                <span class="datechip">9 Sep 2026</span>
-                <h3>CDRH town hall on biocompatibility risk assessment</h3>
+            <article class="panel">
+                <div class="panel-top">
+                    <span class="chip-auth fda">US FDA</span>
+                    <span class="chip-status">Published</span>
+                </div>
+                <h4>CDRH town hall on biocompatibility risk assessment</h4>
                 <p>FDA held a town hall discussing ISO 10993-1:2025 and risk-based selection of biocompatibility endpoints for device evaluation - relevant to how manufacturers plan biological evaluation within a risk-management framework.</p>
-                <a class="src" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/town-hall-biocompatibility-risk-assessment-09092026" target="_blank" rel="noreferrer">Official notice &rarr;</a>
-            </div>
+                <div class="panel-foot">
+                    <span class="datechip">9 Sep 2026</span>
+                    <a class="link-explore" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/town-hall-biocompatibility-risk-assessment-09092026" target="_blank" rel="noreferrer">Explore &rarr;</a>
+                </div>
+            </article>
 
-            <div class="entry fda">
-                <span class="datechip">1 Sep 2026</span>
-                <h3>New 510(k) submission guidances for two dental device types</h3>
+            <article class="panel">
+                <div class="panel-top">
+                    <span class="chip-auth fda">US FDA</span>
+                    <span class="chip-status">Published</span>
+                </div>
+                <h4>New 510(k) submission guidances for two dental device types</h4>
                 <p>CDRH issued 510(k) submission guidances covering dental curing lights and dental composite resin devices, describing the performance testing and documentation FDA expects in premarket notifications for these products.</p>
-                <a class="src" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/cdrh-new-news-and-updates" target="_blank" rel="noreferrer">Official notice &rarr;</a>
-            </div>
+                <div class="panel-foot">
+                    <span class="datechip">1 Sep 2026</span>
+                    <a class="link-explore" href="https://www.fda.gov/medical-devices/medical-devices-news-and-events/cdrh-new-news-and-updates" target="_blank" rel="noreferrer">Explore &rarr;</a>
+                </div>
+            </article>
         </div>
-    </section>
+    </div>
 
-    <section id="eu">
-        <div class="band eu">
-            <h2>EU MDR / IVDR</h2>
-            <span class="meta">European Union &middot; 1 notice</span>
+    <div class="auth-group" id="eu">
+        <div class="auth-head">
+            <span class="adot eu"></span>
+            <h3>EU MDR / IVDR</h3>
+            <span class="count">European Union &middot; 1 notice</span>
+            <span class="line"></span>
         </div>
-        <div class="stack tl">
+        <div class="panels">
 <!-- ==== PREPEND NEW EU ENTRIES DIRECTLY BELOW THIS LINE (newest first) ==== -->
 
-            <div class="entry eu">
-                <span class="datechip">9 Sep 2026</span>
-                <h3>MDCG 2020-16 rev.5 - IVDR classification guidance updated</h3>
+            <article class="panel">
+                <div class="panel-top">
+                    <span class="chip-auth eu">EU MDR / IVDR</span>
+                    <span class="chip-status">Published</span>
+                </div>
+                <h4>MDCG 2020-16 rev.5 - IVDR classification guidance updated</h4>
                 <p>The MDCG revised its guidance on the IVDR classification rules (Annex VIII) for in-vitro diagnostic devices. The revision clarifies how the IVD rules are applied in practice, which affects the risk class - and therefore the conformity-assessment route - of IVD products.</p>
-                <a class="src" href="https://health.ec.europa.eu/latest-updates/mdcg-2020-16-rev5-guidance-classification-rules-vitro-diagnostic-medical-devices-under-regulation-eu-2026-09-09_en" target="_blank" rel="noreferrer">Official notice &rarr;</a>
-            </div>
+                <div class="panel-foot">
+                    <span class="datechip">9 Sep 2026</span>
+                    <a class="link-explore" href="https://health.ec.europa.eu/latest-updates/mdcg-2020-16-rev5-guidance-classification-rules-vitro-diagnostic-medical-devices-under-regulation-eu-2026-09-09_en" target="_blank" rel="noreferrer">Explore &rarr;</a>
+                </div>
+            </article>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="foot">
-        <span>Updated daily from official sources.</span>
-        <a href="index.html">Murugavel C - QARA, Chennai</a>
-    </footer>
+<footer class="footer">
+    <span>Updated daily from official sources.</span>
+    <a href="index.html">Murugavel C - QARA, Chennai</a>
+</footer>
 
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+    "use strict";
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function webglOK() {
+        try {
+            var c = document.createElement("canvas");
+            return !!(window.WebGLRenderingContext && (c.getContext("webgl") || c.getContext("experimental-webgl")));
+        } catch (e) { return false; }
+    }
+    if (typeof THREE === "undefined" || !webglOK()) {
+        document.body.classList.add("no3d");
+        wireMarkers();
+        return;
+    }
+
+    /* ---------- hero scene: abstract metallic device + orbiting documents ---------- */
+    try {
+        var heroCanvas = document.getElementById("hero-canvas");
+        var hRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: true });
+        hRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        var hScene = new THREE.Scene();
+        var hCam = new THREE.PerspectiveCamera(50, 2, 0.1, 100);
+        hCam.position.set(0, 0.4, 9.2);
+
+        hScene.add(new THREE.AmbientLight(0x8899aa, 0.55));
+        var key = new THREE.DirectionalLight(0xffffff, 0.65); key.position.set(4, 6, 6); hScene.add(key);
+        var rim = new THREE.PointLight(0x2dd4bf, 0.4, 26); rim.position.set(-6, -2, 4); hScene.add(rim);
+
+        var core = new THREE.Group();
+        var knot = new THREE.Mesh(
+            new THREE.TorusKnotGeometry(1.05, 0.3, 160, 24),
+            new THREE.MeshStandardMaterial({ color: 0x66788c, metalness: 0.85, roughness: 0.42 })
+        );
+        core.add(knot);
+        var cage = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(2.05, 1),
+            new THREE.MeshBasicMaterial({ color: 0x2dd4bf, wireframe: true, transparent: true, opacity: 0.16 })
+        );
+        core.add(cage);
+
+        var docs = new THREE.Group();
+        var docGeo = new THREE.PlaneGeometry(0.42, 0.58);
+        var docMat = new THREE.MeshBasicMaterial({ color: 0xdde6f0, transparent: true, opacity: 0.06, side: THREE.DoubleSide });
+        for (var i = 0; i < 16; i++) {
+            var m = new THREE.Mesh(docGeo, docMat);
+            var a = (i / 16) * Math.PI * 2;
+            var r = 2.7 + (i % 3) * 0.35;
+            m.position.set(Math.cos(a) * r, ((i % 5) - 2) * 0.55, Math.sin(a) * r);
+            m.lookAt(0, m.position.y * 0.4, 0);
+            docs.add(m);
+        }
+        core.add(docs);
+
+        var pGeo = new THREE.BufferGeometry();
+        var pCount = 260, pos = new Float32Array(pCount * 3);
+        for (var j = 0; j < pCount; j++) {
+            pos[j * 3] = (Math.random() - 0.5) * 16;
+            pos[j * 3 + 1] = (Math.random() - 0.5) * 9;
+            pos[j * 3 + 2] = (Math.random() - 0.5) * 10;
+        }
+        pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        var points = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x2dd4bf, size: 0.035, transparent: true, opacity: 0.5 }));
+        hScene.add(points);
+        hScene.add(core);
+
+        function sizeHero() {
+            var w = heroCanvas.clientWidth, h = heroCanvas.clientHeight;
+            if (heroCanvas.width !== w || heroCanvas.height !== h) {
+                hRenderer.setSize(w, h, false);
+                hCam.aspect = w / h; hCam.updateProjectionMatrix();
+            }
+        }
+        var t0 = performance.now();
+        (function animHero() {
+            requestAnimationFrame(animHero);
+            sizeHero();
+            var t = (performance.now() - t0) / 1000;
+            if (!reduceMotion) {
+                core.rotation.y = t * 0.12;
+                core.rotation.x = Math.sin(t * 0.3) * 0.12;
+                core.position.y = Math.sin(t * 0.5) * 0.18;
+                docs.rotation.y = -t * 0.06;
+                points.rotation.y = t * 0.015;
+            }
+            hRenderer.render(hScene, hCam);
+        })();
+    } catch (e) { document.body.classList.add("no3d"); }
+
+    /* ---------- globe scene ---------- */
+    var AUTHORITIES = {
+        fda:   { lat: 38.9, lon: -77.0, color: 0xc96a6a },
+        cdsco: { lat: 28.6, lon: 77.2,  color: 0xc9a35c },
+        eu:    { lat: 50.85, lon: 4.35, color: 0x6a8fc9 }
+    };
+    var globeTarget = null, globeGroup = null;
+
+    function latLonToVec(lat, lon, radius) {
+        var phi = (90 - lat) * Math.PI / 180;
+        var theta = (lon + 180) * Math.PI / 180;
+        return new THREE.Vector3(
+            -radius * Math.sin(phi) * Math.cos(theta),
+            radius * Math.cos(phi),
+            radius * Math.sin(phi) * Math.sin(theta)
+        );
+    }
+
+    try {
+        var gCanvas = document.getElementById("globe-canvas");
+        var gRenderer = new THREE.WebGLRenderer({ canvas: gCanvas, alpha: true, antialias: true });
+        gRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        var gScene = new THREE.Scene();
+        var gCam = new THREE.PerspectiveCamera(45, 2, 0.1, 100);
+        gCam.position.set(0, 0.6, 5.4);
+
+        gScene.add(new THREE.AmbientLight(0xaabbcc, 0.7));
+        var gKey = new THREE.DirectionalLight(0xffffff, 0.7); gKey.position.set(3, 4, 5); gScene.add(gKey);
+
+        globeGroup = new THREE.Group();
+        globeGroup.rotation.x = 0.28;
+        var R = 1.7;
+
+        var sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(R, 48, 48),
+            new THREE.MeshBasicMaterial({ color: 0x1b2635, wireframe: true, transparent: true, opacity: 0.5 })
+        );
+        globeGroup.add(sphere);
+        var inner = new THREE.Mesh(
+            new THREE.SphereGeometry(R * 0.985, 48, 48),
+            new THREE.MeshStandardMaterial({ color: 0x0a1220, metalness: 0.4, roughness: 0.7, transparent: true, opacity: 0.92 })
+        );
+        globeGroup.add(inner);
+
+        var gPoints = [];
+        var sg = new THREE.SphereGeometry(R * 1.002, 36, 36);
+        var verts = sg.attributes.position;
+        for (var vi = 0; vi < verts.count; vi += 2) {
+            gPoints.push(verts.getX(vi), verts.getY(vi), verts.getZ(vi));
+        }
+        var gpGeo = new THREE.BufferGeometry();
+        gpGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(gPoints), 3));
+        globeGroup.add(new THREE.Points(gpGeo, new THREE.PointsMaterial({ color: 0x2dd4bf, size: 0.028, transparent: true, opacity: 0.55 })));
+
+        var markerMeshes = {};
+        Object.keys(AUTHORITIES).forEach(function (k) {
+            var a = AUTHORITIES[k];
+            var v = latLonToVec(a.lat, a.lon, R * 1.01);
+            var mm = new THREE.Mesh(
+                new THREE.SphereGeometry(0.05, 16, 16),
+                new THREE.MeshBasicMaterial({ color: a.color })
+            );
+            mm.position.copy(v);
+            globeGroup.add(mm);
+            markerMeshes[k] = mm;
+            var ring = new THREE.Mesh(
+                new THREE.RingGeometry(0.08, 0.095, 32),
+                new THREE.MeshBasicMaterial({ color: a.color, transparent: true, opacity: 0.5, side: THREE.DoubleSide })
+            );
+            ring.position.copy(v.clone().multiplyScalar(1.001));
+            ring.lookAt(v.clone().multiplyScalar(2));
+            globeGroup.add(ring);
+        });
+
+        gScene.add(globeGroup);
+
+        function sizeGlobe() {
+            var w = gCanvas.clientWidth, h = gCanvas.clientHeight;
+            if (gCanvas.width !== w || gCanvas.height !== h) {
+                gRenderer.setSize(w, h, false);
+                gCam.aspect = w / h; gCam.updateProjectionMatrix();
+            }
+        }
+        (function animGlobe() {
+            requestAnimationFrame(animGlobe);
+            sizeGlobe();
+            if (!reduceMotion) {
+                if (globeTarget !== null) {
+                    var cur = globeGroup.rotation.y;
+                    var diff = ((globeTarget - cur + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+                    globeGroup.rotation.y = cur + diff * 0.06;
+                } else {
+                    globeGroup.rotation.y += 0.0018;
+                }
+            }
+            gRenderer.render(gScene, gCam);
+        })();
+    } catch (e) { document.body.classList.add("no3d"); }
+
+    function rotateTo(auth) {
+        if (!globeGroup || !AUTHORITIES[auth]) return;
+        var v = latLonToVec(AUTHORITIES[auth].lat, AUTHORITIES[auth].lon, 1.7);
+        globeTarget = -Math.atan2(v.x, v.z);
+    }
+
+    function wireMarkers() {
+        var btns = document.querySelectorAll(".marker-btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                rotateTo(this.getAttribute("data-auth"));
+                var target = document.getElementById(this.getAttribute("data-target"));
+                if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+            });
+        }
+    }
+    wireMarkers();
+})();
+</script>
 </body>
 </html>
