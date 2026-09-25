@@ -405,6 +405,14 @@ section[id] { scroll-margin-top: 76px; }
     .btn:hover, .job-card:hover, .proj-card:hover, .contact-card:hover, .chip:hover { transform: none; }
     .hero-figure:hover img, .hero-figure:hover canvas { transform: none; }
 }
+
+/* ---- v6: skill groups ---- */
+.skill-groups { display: grid; gap: 28px; margin-top: 4px; }
+.skill-group-label {
+    font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); margin: 0 0 12px;
+}
 </style>
 </head>
 <body>
@@ -425,7 +433,7 @@ section[id] { scroll-margin-top: 76px; }
         <p class="eyebrow hero-eyebrow">// Medical Device Regulatory Affairs &amp; Quality Assurance</p>
         <h1 class="hero-name">MURUGAVEL C<span class="accent">.</span></h1>
         <div class="hero-copy">
-        <p class="hero-role">Entry-level <strong>QARA professional</strong> based in Chennai, India - helping medical device teams navigate CDSCO, US FDA and ISO requirements with clean, honest documentation.</p>
+        <p class="hero-role">Entry-level <strong>Medical Device QARA professional</strong> with hands-on internship exposure to CDSCO, US FDA 510(k), ISO 13485 and ISO 14971 documentation.</p>
         <div class="hero-ctas">
             <a class="btn btn-solid" href="mailto:murugavel57741@gmail.com">Email me</a>
             <a class="btn btn-ghost" href="https://wa.me/917339428649" target="_blank" rel="noreferrer">WhatsApp</a>
@@ -454,8 +462,8 @@ section[id] { scroll-margin-top: 76px; }
         <div class="about-grid">
             <div>
                 <h2 class="section-title">Regulatory work, done<br><em>properly.</em></h2>
-                <p class="para">I am a 2026 Biomedical Engineering graduate building a career in medical device Regulatory Affairs and Quality Assurance. My internship at Perfint Healthcare, Chennai gave me hands-on exposure to real QMS work - GS1/UDI registration, NSWS portal submissions for MD-16 test-import licences, ISO 13485 documentation and 510(k) device description with predicate analysis.</p>
-                <p class="para">I care about getting the details right: exact standard numbers, clean classification rationale, and documentation a reviewer can trust. I am looking for an entry-level RA / QA role where I can build strong practical experience in regulatory and quality systems.</p>
+                <p class="para">I am a 2026 Biomedical Engineering graduate building my career in Medical Device Regulatory Affairs and Quality Assurance. During my internships at Perfint Healthcare and Medfins International, I gained practical exposure to US FDA 510(k) documentation, CDSCO processes, ISO 13485 QMS documentation, ISO 14971 risk management, FMEA, GS1/UDI and medical-device labelling.</p>
+                <p class="para">I am particularly interested in entry-level RA, QA and QARA roles where I can apply my regulatory and quality knowledge, contribute to documentation and compliance activities, and continue developing practical industry expertise.</p>
                 <div class="fact-grid">
                     <div><span class="fact-k">Degree</span><span class="fact-v">B.E. Biomedical Engineering, 2026</span></div>
                     <div><span class="fact-k">College</span><span class="fact-v">Dhanalakshmi Srinivasan College of Engineering (Anna University)</span></div>
@@ -471,41 +479,41 @@ section[id] { scroll-margin-top: 76px; }
 
     <section id="expertise" class="section">
         <p class="section-label"><span>02</span>Expertise</p>
-        <h2 class="section-title">What I can<br><em>work on.</em></h2>
+        <h2 class="section-title">Regulatory &amp;<br><em>quality exposure.</em></h2>
         <div class="exp-list">
                     <div class="exp-row">
                         <span class="exp-n">01</span>
                         <div>
-                            <h3 class="exp-title">US FDA 510(k) Documentation</h3>
-                            <p class="exp-detail">Device description drafting, predicate research and substantial equivalence reasoning for premarket notifications.</p>
+                            <h3 class="exp-title">US FDA 510(k)</h3>
+                            <p class="exp-detail">Device description, predicate research and substantial-equivalence documentation exposure.</p>
                         </div>
                     </div>
                     <div class="exp-row">
                         <span class="exp-n">02</span>
                         <div>
-                            <h3 class="exp-title">CDSCO Import Licensing</h3>
-                            <p class="exp-detail">MD-16 / MD-17 pathways, NSWS portal submissions and MDR 2017 classification rationale for India.</p>
+                            <h3 class="exp-title">CDSCO Regulatory Processes</h3>
+                            <p class="exp-detail">MDR 2017 classification, MD-16/MD-17 pathways and NSWS submission exposure.</p>
                         </div>
                     </div>
                     <div class="exp-row">
                         <span class="exp-n">03</span>
                         <div>
-                            <h3 class="exp-title">ISO 13485 Quality Systems</h3>
-                            <p class="exp-detail">QMS documentation, internal audit support and assistance with Device Master File (DMF) documentation.</p>
+                            <h3 class="exp-title">ISO 13485 QMS</h3>
+                            <p class="exp-detail">QMS documentation, document control and internal-audit exposure.</p>
                         </div>
                     </div>
                     <div class="exp-row">
                         <span class="exp-n">04</span>
                         <div>
                             <h3 class="exp-title">ISO 14971 Risk Management</h3>
-                            <p class="exp-detail">Risk analysis, FMEA and risk-benefit documentation across the device lifecycle.</p>
+                            <p class="exp-detail">Risk analysis, FMEA and risk-control documentation.</p>
                         </div>
                     </div>
                     <div class="exp-row">
                         <span class="exp-n">05</span>
                         <div>
-                            <h3 class="exp-title">Post-Market &amp; Change Control</h3>
-                            <p class="exp-detail">PMS, CAPA and change-control records (DCR / PCR / PCN / DCN) - basics level, from industry internship exposure.</p>
+                            <h3 class="exp-title">Change Control &amp; PMS</h3>
+                            <p class="exp-detail">Basic exposure to change-control documentation, CAPA and PMS activities.</p>
                         </div>
                     </div>
         </div>
@@ -549,24 +557,23 @@ section[id] { scroll-margin-top: 76px; }
     <section id="skills" class="section">
         <p class="section-label"><span>04</span>Skills</p>
         <h2 class="section-title">Tools of<br><em>the trade.</em></h2>
-        <div class="chip-grid">
-                    <span class="chip">510(k) Device Description</span>
-                    <span class="chip">Substantial Equivalence</span>
-                    <span class="chip">CDSCO MD-16 / MD-17</span>
-                    <span class="chip">MDR 2017</span>
-                    <span class="chip">ISO 13485</span>
-                    <span class="chip">ISO 14971</span>
-                    <span class="chip">GSPR</span>
-                    <span class="chip">Technical File</span>
-                    <span class="chip">Device Master File</span>
-                    <span class="chip">FMEA</span>
-                    <span class="chip">CAPA</span>
-                    <span class="chip">PMS</span>
-                    <span class="chip">Classification Rationale</span>
-                    <span class="chip">Internal Audit</span>
-                    <span class="chip">GS1 / UDI</span>
-                    <span class="chip">NSWS Portal</span>
-                    <span class="chip">FDA eSTAR</span>
+        <div class="skill-groups">
+            <div class="skill-group">
+                <h3 class="skill-group-label">Regulatory Affairs</h3>
+                <div class="chip-grid"><span class="chip">US FDA 510(k)</span><span class="chip">Device Description</span><span class="chip">Predicate Analysis</span><span class="chip">Substantial Equivalence</span><span class="chip">CDSCO / MDR 2017</span><span class="chip">Classification</span><span class="chip">MD-16 / MD-17</span></div>
+            </div>
+            <div class="skill-group">
+                <h3 class="skill-group-label">Quality &amp; Risk</h3>
+                <div class="chip-grid"><span class="chip">ISO 13485</span><span class="chip">ISO 14971</span><span class="chip">FMEA</span><span class="chip">CAPA</span><span class="chip">Internal Audit</span><span class="chip">Change Control</span></div>
+            </div>
+            <div class="skill-group">
+                <h3 class="skill-group-label">Technical Documentation</h3>
+                <div class="chip-grid"><span class="chip">Technical File</span><span class="chip">Device Master File</span><span class="chip">Labelling / IFU</span><span class="chip">PMS documentation</span></div>
+            </div>
+            <div class="skill-group">
+                <h3 class="skill-group-label">UDI &amp; Regulatory Tools</h3>
+                <div class="chip-grid"><span class="chip">GS1 / UDI</span><span class="chip">NSWS</span><span class="chip">FDA eSTAR</span></div>
+            </div>
         </div>
     </section>
 
@@ -579,11 +586,7 @@ section[id] { scroll-margin-top: 76px; }
                 <h3 class="proj-title">Class II Image-Guided Navigation System - 510(k) Documentation</h3>
                 <p class="proj-detail">Internship contribution: drafted Device Description and Substantial Equivalence sections for a 510(k) submission, cross-referencing predicate data across 2 FDA clearances, with UDI / GS1 and CDSCO import-licence support.</p>
             </article>
-                    <article class="proj-card">
-                        <span class="proj-tag">Academic project</span>
-                        <h3 class="proj-title">AI &amp; IoT Smart Cradle System</h3>
-                        <p class="proj-detail">Final-year project: ESP32-based connected cradle with DHT11 and LDR sensing, Blynk cloud and mobile app, motorised auto-rocking and real-time caregiver alerts.</p>
-                    </article>
+                    
                     <article class="proj-card">
                         <span class="proj-tag">Internship work - Perfint Healthcare</span>
                         <h3 class="proj-title">CDSCO Import Licensing Support</h3>
@@ -604,6 +607,11 @@ section[id] { scroll-margin-top: 76px; }
                         <h3 class="proj-title">CDSCO Classification Study</h3>
                         <p class="proj-detail">Studied MDR 2017 classification rules and built classification rationales for real device categories.</p>
                     </article>
+            <article class="proj-card">
+                        <span class="proj-tag">Academic project</span>
+                        <h3 class="proj-title">AI &amp; IoT Smart Cradle System</h3>
+                        <p class="proj-detail">Final-year project: ESP32-based connected cradle with DHT11 and LDR sensing, Blynk cloud and mobile app, motorised auto-rocking and real-time caregiver alerts.</p>
+                    </article>
         </div>
         <p class="honest-note">Work samples are framed exactly as they are - internship contributions, academic work and independent practice.</p>
     </section>
@@ -611,7 +619,7 @@ section[id] { scroll-margin-top: 76px; }
     <section id="contact" class="section contact">
         <p class="section-label"><span>06</span>Contact</p>
         <h2 class="contact-title">Let us build<br><em>compliant devices.</em></h2>
-        <p class="para">Open to entry-level Regulatory Affairs and Quality Assurance roles in medical devices. Chennai-based, open to relocation for the right team.</p>
+        <p class="para">Currently seeking entry-level Medical Device RA, QA and QARA opportunities. Based in Chennai and open to relocation across India.</p>
         <div class="contact-grid">
             <a class="contact-card" href="mailto:murugavel57741@gmail.com">
                 <span class="contact-k">Email</span>
