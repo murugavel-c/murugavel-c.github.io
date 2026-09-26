@@ -153,6 +153,27 @@ a{color:inherit;text-decoration:none}
 }
 .about-card .w{transition:none}
 .about-card strong{font-weight:600;color:#fff}
+.about-card .intro-secondary{font-size:16px;color:#b9b9b9;margin-top:18px}
+/* intro details */
+.intro-details{
+  margin-top:18px;padding:24px 32px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:28px;
+  box-shadow:0 30px 60px rgba(0,0,0,.45);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.intro-details-title{
+  margin-bottom:8px;color:var(--lime);font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+}
+.intro-details dl{margin:0}
+.intro-details-row{
+  display:grid;grid-template-columns:minmax(85px,130px) minmax(0,1fr);
+  gap:16px;padding:11px 0;border-top:1px solid rgba(255,255,255,.08);
+}
+.intro-details dt{color:#9ca3af;font-size:13px;font-weight:500}
+.intro-details dd{margin:0;color:#f3f3f3;font-size:14px;font-weight:500;overflow-wrap:anywhere}
 /* skills marquee */
 .marquee{
   margin-top:110px;background:#030303;
@@ -179,8 +200,37 @@ a{color:inherit;text-decoration:none}
   .intro-heading{text-align:center;font-size:clamp(3.4rem,18vw,8rem)}
   .about-card{padding:26px}
   .about-card p{font-size:16px;text-align:center}
+  .about-card .intro-secondary{font-size:14px}
+  .intro-details{padding:23px 22px}
+  .intro-details-row{grid-template-columns:minmax(74px,95px) minmax(0,1fr);gap:12px}
   .marquee-track span{font-size:14px}
 }
+
+
+/* ---------- V1 CONTENT IN V2 LANGUAGE ---------- */
+.parity-section{background:var(--bg);padding:110px 40px 120px;border-top:1px solid var(--line)}
+.parity-inner{max-width:1280px;margin:0 auto}
+.parity-heading{font-size:clamp(2.8rem,7.5vw,7rem);font-weight:900;line-height:.98;letter-spacing:-.035em;text-transform:uppercase;margin-bottom:52px}
+.parity-heading .serif-i{font-size:1.06em;text-transform:lowercase;color:#bcbcbc}
+.parity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.parity-card{min-width:0;padding:30px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.045);box-shadow:0 25px 50px rgba(0,0,0,.24);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.parity-card h3{font-size:clamp(1.18rem,2vw,1.65rem);font-weight:700;line-height:1.2;margin:6px 0 13px;overflow-wrap:anywhere}
+.parity-card p,.parity-card li{color:#c8c8c8;font-size:15px;line-height:1.7}
+.parity-card ul{padding-left:21px;margin:15px 0 0}
+.parity-card li{margin-bottom:9px}
+.parity-tag{display:block;color:var(--lime);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.parity-meta{display:inline-block;color:#0a0a0a;background:var(--lime);border-radius:99px;padding:5px 12px;margin-top:8px;font-size:12px;font-weight:700}
+.parity-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.parity-list .parity-card{padding:22px 25px}
+.parity-list .parity-card h3{margin:4px 0 8px}
+.parity-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.parity-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.parity-chips span{display:inline-block;padding:8px 11px;border:1px solid rgba(204,255,0,.26);background:rgba(204,255,0,.055);border-radius:999px;color:#eee;font-size:12px;line-height:1.3}
+.parity-note{color:var(--gray);font-size:13px;margin-top:25px}
+.footer-contact-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;margin-top:16px}
+.footer-contact-actions a{padding:10px 18px;border:1px solid rgba(255,255,255,.28);border-radius:99px;font-size:13px}
+.footer-contact-actions a:hover{border-color:var(--lime);color:var(--lime)}
+@media(max-width:900px){.parity-section{padding:78px 22px 86px}.parity-grid,.parity-list,.parity-skills{grid-template-columns:1fr}.parity-card{padding:24px}.parity-list .parity-card{padding:22px}.footer-contact-actions{justify-content:flex-start}}
 
 /* ---------- SERVICES ---------- */
 .services{background:var(--bg);padding:130px 40px 120px}
@@ -469,6 +519,17 @@ a{color:inherit;text-decoration:none}
       <h2 class="intro-heading grad-text reveal-heading">Intro</h2>
       <div class="about-card">
         <p id="aboutText">Hey, I'm Murugavel. An entry-level Medical Device QARA professional from Chennai, building my career in regulatory affairs and quality assurance. During my internships at Perfint Healthcare and Medfins International, I gained hands-on exposure to US FDA 510(k), CDSCO, ISO 13485, ISO 14971, FMEA and GS1/UDI documentation. I enjoy turning regulatory requirements into clean, audit-ready documentation - and I keep sharpening my regulatory judgment with every project.</p>
+        <p class="intro-secondary">I am particularly interested in entry-level RA, QA and QARA roles where I can apply my regulatory and quality knowledge, contribute to documentation and compliance activities, and continue developing practical industry expertise.</p>
+      </div>
+      <div class="intro-details" aria-label="Education and availability">
+        <h3 class="intro-details-title">At a glance</h3>
+        <dl>
+          <div class="intro-details-row"><dt>Degree</dt><dd>B.E. Biomedical Engineering, 2026</dd></div>
+          <div class="intro-details-row"><dt>College</dt><dd>Dhanalakshmi Srinivasan College of engineering (Anna University)</dd></div>
+          <div class="intro-details-row"><dt>CGPA</dt><dd>7.81</dd></div>
+          <div class="intro-details-row"><dt>Location</dt><dd>Chennai</dd></div>
+          <div class="intro-details-row"><dt>Status</dt><dd>Open to relocation across India</dd></div>
+        </dl>
       </div>
     </div>
   </div>
@@ -579,6 +640,10 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<section class="parity-section" id="expertise"><div class="parity-inner"><h2 class="parity-heading grad-text">Regulatory &amp; <span class="serif-i">quality exposure</span></h2><div class="parity-list"><article class="parity-card"><span class="parity-tag">01 / Expertise</span><h3>US FDA 510(k)</h3><p>Device description, predicate research and substantial-equivalence documentation exposure.</p></article><article class="parity-card"><span class="parity-tag">02 / Expertise</span><h3>CDSCO Regulatory Processes</h3><p>MDR 2017 classification, MD-16/MD-17 pathways and NSWS submission exposure.</p></article><article class="parity-card"><span class="parity-tag">03 / Expertise</span><h3>ISO 13485 QMS</h3><p>QMS documentation, document control and internal-audit exposure.</p></article><article class="parity-card"><span class="parity-tag">04 / Expertise</span><h3>ISO 14971 Risk Management</h3><p>Risk analysis, FMEA and risk-control documentation.</p></article><article class="parity-card"><span class="parity-tag">05 / Expertise</span><h3>Change Control &amp; PMS</h3><p>Basic exposure to change-control documentation, CAPA and PMS activities.</p></article></div></div></section>
+<section class="parity-section" id="experience"><div class="parity-inner"><h2 class="parity-heading grad-text">Where I <span class="serif-i">trained</span></h2><div class="parity-grid"><article class="parity-card"><span class="parity-tag">Perfint Healthcare - Chennai</span><h3>QARA Intern</h3><span class="parity-meta">3 months</span><ul><li>GS1 / UDI registration for medical devices.</li><li>NSWS portal work for CDSCO MD-16 test-import licence.</li><li>ISO 13485 quality management system documentation.</li><li>510(k) device description and predicate analysis.</li><li>Exposure to change-control records: DCR, PCR, PCN, DCN.</li></ul></article><article class="parity-card"><span class="parity-tag">Medfins International LLP</span><h3>Regulatory Affairs Intern</h3><span class="parity-meta">2 months</span><ul><li>Performed ISO 14971 risk analysis and developed FMEA tables.</li><li>Gained hands-on understanding of ISO 13485 QMS documentation.</li><li>Assisted in preparing Device Master File and labelling documents.</li></ul></article></div></div></section>
+<section class="parity-section" id="skills"><div class="parity-inner"><h2 class="parity-heading grad-text">Tools of <span class="serif-i">the trade</span></h2><div class="parity-skills"><div class="parity-card"><span class="parity-tag">Skills / Regulatory Affairs</span><div class="parity-chips"><span>US FDA 510(k)</span><span>Device Description</span><span>Predicate Analysis</span><span>Substantial Equivalence</span><span>CDSCO / MDR 2017</span><span>Classification</span><span>MD-16 / MD-17</span></div></div><div class="parity-card"><span class="parity-tag">Skills / Quality &amp; Risk</span><div class="parity-chips"><span>ISO 13485</span><span>ISO 14971</span><span>FMEA</span><span>CAPA</span><span>Internal Audit</span><span>Change Control</span></div></div><div class="parity-card"><span class="parity-tag">Skills / Technical Documentation</span><div class="parity-chips"><span>Technical File</span><span>Device Master File</span><span>Labelling / IFU</span><span>PMS documentation</span></div></div><div class="parity-card"><span class="parity-tag">Skills / UDI &amp; Regulatory Tools</span><div class="parity-chips"><span>GS1 / UDI</span><span>NSWS</span><span>FDA eSTAR</span></div></div></div></div></section>
+
 <!-- PROJECTS -->
 <section class="projects" id="work">
   <div class="projects-header">
@@ -601,29 +666,42 @@ a{color:inherit;text-decoration:none}
 
   <article class="project reverse">
     <div class="project-media">
-      <div class="project-visual"><span class="pv-num">02</span><span class="pv-tag">Self-built · Study product</span></div>
+      <div class="project-visual"><span class="pv-num">02</span><span class="pv-tag">Medfins International LLP - Regulatory Affairs</span></div>
     </div>
     <div class="project-info">
       <span class="project-num">02</span>
-      <h3 class="project-title">QARA <span class="serif-i">study</span> Book</h3>
-      <p class="project-desc">Turned my handwritten QARA study notes into a structured, corrected study book for new students - regulators map, ISO 13485, ISO 14971 risk and FMEA, CAPA, change control, CDSCO and US FDA pathways, with flow charts and mock questions per section.</p>
+      <h3 class="project-title">Regulatory Affairs <span class="serif-i">intern</span> - Medfins International LLP</h3>
+      <p class="project-desc">Two-month internship. Performed ISO 14971 risk analysis and developed FMEA tables, gained hands-on understanding of ISO 13485 QMS documentation, and assisted in preparing Device Master File and labelling documents.</p>
     </div>
   </article>
 
   <article class="project">
     <div class="project-media">
-      <div class="project-visual"><span class="pv-num">03</span><span class="pv-tag">Personal site · GitHub Pages</span></div>
+      <div class="project-visual"><span class="pv-num">03</span><span class="pv-tag">Self-built · Study product</span></div>
     </div>
     <div class="project-info">
       <span class="project-num">03</span>
+      <h3 class="project-title">QARA <span class="serif-i">study</span> Book</h3>
+      <p class="project-desc">Turned my handwritten QARA study notes into a structured, corrected study book for new students - regulators map, ISO 13485, ISO 14971 risk and FMEA, CAPA, change control, CDSCO and US FDA pathways, with flow charts and mock questions per section.</p>
+    </div>
+  </article>
+
+  <article class="project reverse">
+    <div class="project-media">
+      <div class="project-visual"><span class="pv-num">04</span><span class="pv-tag">Personal portfolio · Web</span></div>
+    </div>
+    <div class="project-info">
+      <span class="project-num">04</span>
       <h3 class="project-title">Portfolio <span class="serif-i">website</span></h3>
-      <p class="project-desc">Designed and built my recruiter-facing QARA portfolio and deployed it on GitHub Pages - internship experience, expertise areas and work samples, written with fresher-accurate wording that never overclaims.</p>
+      <p class="project-desc">Designed and built my recruiter-facing QARA portfolio and published it as a personal site - internship experience, expertise areas and work samples, written with fresher-accurate wording that never overclaims.</p>
       <div class="project-btns">
         <a class="btn-lime" href="https://murugavel-c.github.io/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
       </div>
     </div>
   </article>
 </section>
+
+<section class="parity-section" id="work-samples"><div class="parity-inner"><h2 class="parity-heading grad-text">More <span class="serif-i">work samples</span></h2><div class="parity-grid"><article class="parity-card"><span class="parity-tag">Internship project - Perfint Healthcare</span><h3>Class II medical-device 510(k) documentation</h3><p>Internship contribution: drafted Device Description and Substantial Equivalence sections for a 510(k) submission, cross-referencing predicate data across 2 FDA clearances, with UDI / GS1 and CDSCO import-licence support.</p></article><article class="parity-card"><span class="parity-tag">Internship work - Perfint Healthcare</span><h3>CDSCO Import Licensing Support</h3><p>Supported MD-16 test-import licence work on the NSWS portal and GS1 / UDI registration activities.</p></article><article class="parity-card"><span class="parity-tag">Self-built work sample</span><h3>ISO 14971 Risk Analysis &amp; FMEA Practice</h3><p>Independent risk-management file practice: hazard identification, FMEA tables and risk-control documentation aligned to ISO 14971.</p></article><article class="parity-card"><span class="parity-tag">Internship work - Perfint Healthcare</span><h3>Change-Control Records</h3><p>Hands-on exposure at basics level to the change-control log - DCR, PCR, PCN and DCN records within a working medical device QMS.</p></article><article class="parity-card"><span class="parity-tag">Self-built work sample</span><h3>CDSCO Classification Study</h3><p>Studied MDR 2017 classification rules and built classification rationales for real device categories.</p></article><article class="parity-card"><span class="parity-tag">Academic project</span><h3>AI &amp; IoT Smart Cradle System</h3><p>Final-year project: ESP32-based connected cradle with DHT11 and LDR sensing, Blynk cloud and mobile app, motorised auto-rocking and real-time caregiver alerts.</p></article></div><p class="parity-note">Work samples are internship contributions, academic work and independent practice.</p></div></section>
 
 <!-- FOOTER / CONTACT -->
 <footer class="footer" id="contact">
@@ -638,6 +716,9 @@ a{color:inherit;text-decoration:none}
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
         <a href="#work">Projects</a>
       </nav>
     </div>
@@ -645,6 +726,7 @@ a{color:inherit;text-decoration:none}
       <h3>Let's build something</h3>
       <p>Open to entry-level QARA, RA and QA roles. Based in Chennai, open to relocation across India. +91 73394 28649</p>
       <a class="btn-white" href="mailto:murugavel57741@gmail.com">Get in touch</a>
+      <div class="footer-contact-actions"><a href="tel:+917339428649">Call +91 73394 28649</a><a href="https://murugavel-c.github.io/Resume.pdf" target="_blank" rel="noopener noreferrer" download="MURUGAVEL C Resume.pdf">Download Resume (PDF)</a></div>
     </div>
   </div>
 
