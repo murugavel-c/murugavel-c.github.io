@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Murugavel C - Medical Device Regulatory Affairs &amp; QA</title>
+<meta name="description" content="Entry-level Medical Device QARA professional with hands-on internship exposure to CDSCO, US FDA 510(k), ISO 13485 and ISO 14971 documentation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050505;
+  --lime:#CCFF00;
+  --gray:#9CA3AF;
+  --line:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden;background:var(--bg)}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:#000}
+
+.grad-text{
+  background:linear-gradient(180deg,#ffffff 0%,#d9d9d9 42%,#8a8a8a 68%,#3d3d3d 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 12px 30px rgba(0,0,0,.55));
+}
+.serif-i{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 40px;
+  background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.nav .logo{font-weight:800;letter-spacing:-.02em;font-size:18px}
+.nav .logo span{color:var(--lime)}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;transition:color .3s}
+.nav ul a:hover{color:#fff}
+@media(max-width:768px){
+  .nav{padding:16px 20px}
+  .nav ul{gap:16px}
+  .nav ul a{font-size:11px;letter-spacing:.08em}
+  .nav ul li:nth-child(2){display:none}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;min-height:100svh;
+  overflow:hidden;background:#000;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 70% 55% at 50% 42%,#161616 0%,#0a0a0a 45%,#000 100%);
+}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.18);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.hero-title-wrap{
+  position:absolute;left:50%;top:50%;z-index:2;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+}
+.hero-title{
+  font-weight:900;text-transform:uppercase;
+  letter-spacing:-.03em;line-height:1;
+  font-size:clamp(3rem,12.5vw,13.5rem);
+  user-select:none;
+}
+.hero-title .ch{display:inline-block}
+.hero-person{
+  position:absolute;left:50%;bottom:0;z-index:3;
+  transform:translateX(-50%) translateY(110vh);
+  height:min(86vh,880px);width:auto;
+  filter:drop-shadow(0 -18px 60px rgba(0,0,0,.6));
+}
+.hero-subtitle{
+  position:absolute;z-index:4;left:6vw;bottom:13vh;
+  font-size:clamp(1.15rem,3vw,3rem);line-height:1.15;
+  text-shadow:0 4px 24px rgba(0,0,0,.8);
+}
+.hero-subtitle strong{font-weight:800;display:block}
+.hero-subtitle em{color:#c9c9c9}
+.hero-cta{
+  position:absolute;z-index:4;right:6vw;bottom:12vh;
+  display:flex;align-items:center;gap:14px;
+}
+.cta-arrow{
+  width:56px;height:56px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.28);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:border-color .3s,background .3s;
+}
+.cta-arrow svg{width:20px;height:20px;transition:transform .3s}
+.cta-arrow:hover{border-color:rgba(255,255,255,.6)}
+.cta-arrow:hover svg{transform:rotate(45deg)}
+.cta-pill{
+  padding:14px 34px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(0,0,0,.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  font-size:15px;font-weight:500;letter-spacing:.04em;
+  transition:background .3s,border-color .3s;
+}
+.cta-pill:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+@media(max-width:768px){
+  .hero-title{font-size:15vw}
+  .hero-person{height:62vh;height:62svh}
+  .hero-subtitle{left:0;right:0;bottom:15vh;text-align:center;font-size:1.35rem}
+  .hero-cta{right:0;left:0;bottom:6vh;justify-content:center}
+  .cta-arrow{width:46px;height:46px}
+  .cta-pill{padding:11px 26px;font-size:14px}
+}
+
+/* ---------- ABOUT ---------- */
+.about{background:var(--bg);padding:120px 40px 0;position:relative}
+.about-grid{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:start;
+}
+.about-portrait img{
+  width:260px;border-radius:18px;
+  filter:drop-shadow(0 24px 60px rgba(0,0,0,.7));
+}
+.about-right{min-width:0}
+.intro-heading{
+  font-size:clamp(4rem,10vw,11rem);font-weight:900;
+  letter-spacing:-.04em;line-height:.95;text-transform:uppercase;
+  margin-bottom:34px;
+}
+.about-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:28px;
+  padding:40px;
+  box-shadow:0 30px 60px rgba(0,0,0,.45);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:background .4s;
+}
+.about-card:hover{background:rgba(255,255,255,.075)}
+.about-card p{
+  font-size:20px;font-weight:300;line-height:1.75;color:#d4d4d4;max-width:62ch;
+}
+.about-card .w{transition:none}
+.about-card strong{font-weight:600;color:#fff}
+/* skills marquee */
+.marquee{
+  margin-top:110px;background:#030303;
+  border-top:1px solid rgba(255,255,255,.05);
+  padding:34px 0 40px;overflow:hidden;
+}
+.marquee-row{display:flex;overflow:hidden;user-select:none;padding:7px 0}
+.marquee-track{
+  display:flex;flex-shrink:0;gap:0;white-space:nowrap;
+  animation:mq 38s linear infinite;
+}
+.marquee-row.rev .marquee-track{animation-direction:reverse}
+.marquee-track span{
+  font-size:17px;font-weight:500;letter-spacing:.12em;color:#8b8b8b;
+  text-transform:uppercase;padding:0 14px;
+}
+.marquee-track i{color:#3f3f3f;font-style:normal}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:900px){
+  .about{padding:90px 22px 0}
+  .about-grid{grid-template-columns:1fr;gap:44px}
+  .about-portrait{display:flex;justify-content:center}
+  .about-portrait img{width:200px}
+  .intro-heading{text-align:center;font-size:clamp(3.4rem,18vw,8rem)}
+  .about-card{padding:26px}
+  .about-card p{font-size:16px;text-align:center}
+  .marquee-track span{font-size:14px}
+}
+
+/* ---------- SERVICES ---------- */
+.services{background:var(--bg);padding:130px 40px 120px}
+.services-head{
+  max-width:1280px;margin:0 auto 70px;
+  display:flex;justify-content:flex-end;
+}
+.services-heading{
+  font-size:clamp(2.6rem,7.5vw,8rem);font-weight:900;
+  text-transform:uppercase;letter-spacing:-.03em;line-height:.98;
+  text-align:right;
+}
+.accordion{max-width:1280px;margin:0 auto;border-top:1px solid var(--line)}
+.service{border-bottom:1px solid var(--line)}
+.service-row{
+  width:100%;display:flex;align-items:center;gap:28px;
+  padding:34px 24px;background:transparent;border:0;cursor:pointer;
+  color:#fff;font-family:inherit;text-align:left;
+  transition:background .3s,color .3s;
+}
+.service-num{font-size:15px;font-weight:600;letter-spacing:.18em;color:#8b8b8b;min-width:34px;transition:color .3s}
+.service-title{
+  flex:1;font-size:clamp(1.15rem,3.2vw,2.4rem);font-weight:800;
+  text-transform:uppercase;letter-spacing:-.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.service-arrow{flex-shrink:0;transition:transform .3s}
+.service-arrow svg{width:34px;height:34px;display:block}
+.service-arrow .stroke{stroke:var(--lime);transition:stroke .3s}
+@media(hover:hover){
+  .service-row:hover{background:var(--lime);color:#000}
+  .service-row:hover .service-num{color:#000}
+  .service-row:hover .service-arrow .stroke{stroke:#000}
+}
+.service.open .service-row{background:var(--lime);color:#000}
+.service.open .service-num{color:#000}
+.service.open .service-arrow{transform:rotate(90deg)}
+.service.open .service-arrow .stroke{stroke:#000}
+.service-body{
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .55s cubic-bezier(.4,0,.2,1),opacity .45s;
+}
+.service.open .service-body{max-height:900px;opacity:1}
+.service-cols{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+  padding:44px 24px 54px 86px;
+}
+.caps{list-style:none}
+.caps li{
+  font-weight:300;font-size:16.5px;color:#d9d9d9;line-height:1.5;
+  padding:7px 0;display:flex;align-items:baseline;gap:12px;
+}
+.caps li::before{content:'';width:8px;height:8px;background:var(--lime);flex-shrink:0;transform:translateY(-1px)}
+.service-desc p{
+  color:var(--gray);font-weight:300;font-size:16.5px;line-height:1.75;max-width:52ch;
+}
+.service-cta{
+  display:inline-block;margin-top:28px;position:relative;
+  padding:14px 34px;border:1px solid var(--lime);
+  color:var(--lime);font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  transition:background .3s,color .3s;
+}
+.service-cta::before,.service-cta::after{
+  content:'';position:absolute;width:9px;height:9px;border:1px solid var(--lime);
+}
+.service-cta::before{top:-5px;left:-5px;border-width:1px 0 0 1px}
+.service-cta::after{bottom:-5px;right:-5px;border-width:0 1px 1px 0}
+.service-cta:hover{background:var(--lime);color:#000}
+@media(max-width:768px){
+  .services{padding:90px 20px}
+  .services-head{margin-bottom:44px}
+  .service-row{gap:12px;padding:24px 10px}
+  .service-title{font-size:1.05rem;letter-spacing:0}
+  .service-arrow svg{width:22px;height:22px}
+  .service-cols{grid-template-columns:1fr;gap:30px;padding:30px 12px 40px 12px}
+}
+
+/* ---------- PROJECTS ---------- */
+.projects{background:var(--bg);padding:90px 40px 110px}
+.projects-header{
+  max-width:1280px;margin:0 auto 110px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:48px;flex-wrap:wrap;
+}
+.projects-title{
+  font-size:clamp(2.6rem,6.5vw,6rem);font-weight:900;
+  text-transform:uppercase;letter-spacing:-.03em;line-height:1;
+}
+.projects-title .serif-i{
+  text-transform:lowercase;font-weight:400;color:#b9b9b9;letter-spacing:0;
+  -webkit-text-fill-color:#b9b9b9;
+}
+.projects-header-right{max-width:400px}
+.projects-header-right p{
+  color:var(--gray);font-weight:300;font-size:15px;line-height:1.7;margin-bottom:26px;
+}
+.pill-lime{
+  display:inline-block;background:var(--lime);color:#000;
+  padding:11px 26px;border-radius:999px;border:1px solid var(--lime);
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  transition:background .3s,border-color .3s;
+}
+.pill-lime:hover{background:#b3e600;border-color:#b3e600}
+.project{
+  max-width:1280px;margin:0 auto 170px;
+  display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center;
+}
+.project:last-child{margin-bottom:0}
+.project.reverse .project-media{order:2}
+.project.reverse .project-info{order:1}
+.project-media{
+  aspect-ratio:16/10;border-radius:6px;overflow:hidden;
+  opacity:.92;transition:transform .7s cubic-bezier(.22,1,.36,1),opacity .7s;
+}
+.project:hover .project-media{transform:scale(1.03);opacity:1}
+.project-visual{
+  width:100%;height:100%;position:relative;overflow:hidden;
+  background:#0a0c0a;
+  display:flex;align-items:center;justify-content:center;
+}
+.project-visual::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 45% at 30% 78%,rgba(204,255,0,.16),transparent 60%),
+    radial-gradient(ellipse 40% 35% at 75% 25%,rgba(204,255,0,.06),transparent 65%);
+}
+.project-visual::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.pv-num{
+  font-size:clamp(6rem,14vw,11rem);font-weight:900;letter-spacing:-.04em;line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px rgba(204,255,0,.4);
+}
+.pv-tag{
+  position:absolute;left:22px;bottom:18px;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);
+}
+.project-num{
+  display:block;color:var(--lime);font-weight:700;font-size:14px;
+  letter-spacing:.28em;text-transform:uppercase;margin-bottom:18px;
+}
+.project-title{
+  font-size:clamp(1.9rem,3.6vw,3.4rem);font-weight:800;
+  text-transform:uppercase;letter-spacing:-.02em;line-height:1.05;margin-bottom:24px;
+}
+.project-title .serif-i{color:#a8a8a8;text-transform:lowercase}
+.project-desc{
+  color:var(--gray);font-weight:300;font-size:15.5px;line-height:1.75;
+  max-width:500px;margin-bottom:34px;
+}
+.project-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-lime{
+  background:var(--lime);color:#000;border:1px solid var(--lime);
+  padding:11px 24px;border-radius:999px;font-size:13.5px;font-weight:600;
+  transition:background .3s;
+}
+.btn-lime:hover{background:#b3e600}
+.btn-ghost{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);
+  padding:11px 24px;border-radius:999px;font-size:13.5px;font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background .3s,color .3s;
+}
+.btn-ghost:hover{background:#fff;color:#000}
+.btn-ghost svg{width:15px;height:15px;fill:currentColor}
+@media(max-width:900px){
+  .projects{padding:70px 22px 90px}
+  .projects-header{margin-bottom:70px}
+  .project{grid-template-columns:1fr;gap:30px;margin-bottom:100px}
+  .project.reverse .project-media{order:0}
+  .project.reverse .project-info{order:1}
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  position:relative;min-height:100vh;min-height:100svh;
+  background:#000;overflow:hidden;
+  display:flex;flex-direction:column;
+  padding:110px 40px 28px;
+}
+.footer-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('assets/footer-wave.jpg') bottom center/cover no-repeat;
+}
+.footer-veil{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.82) 30%,rgba(0,0,0,.35) 62%,rgba(0,0,0,0) 100%);
+}
+.footer-top,.footer-social,.footer-brand,.footer-bottom{position:relative;z-index:2}
+.footer-top{
+  max-width:1280px;width:100%;margin:0 auto;
+  display:flex;justify-content:space-between;gap:56px;flex-wrap:wrap;
+}
+.footer-label{
+  display:block;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+  color:#8b8b8b;margin-bottom:16px;
+}
+.footer-email{
+  font-size:clamp(1.3rem,3vw,2.4rem);font-weight:600;letter-spacing:-.01em;
+  color:#f2f2f2;transition:color .3s;
+}
+.footer-email:hover{color:var(--lime)}
+.footer-nav{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+.footer-nav a{font-size:14.5px;color:#b5b5b5;transition:color .3s}
+.footer-nav a:hover{color:#fff}
+.footer-right{max-width:380px;text-align:right}
+.footer-right h3{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
+.footer-right p{color:var(--gray);font-weight:300;font-size:15px;line-height:1.7;margin-bottom:28px}
+.btn-white{
+  display:inline-block;background:#fff;color:#000;
+  padding:14px 36px;border-radius:999px;font-weight:600;font-size:15px;
+  transition:transform .3s,background .3s;
+}
+.btn-white:hover{transform:translateY(-2px);background:#e8e8e8}
+.footer-social{
+  max-width:1280px;width:100%;margin:64px auto 0;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:26px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+.footer-social a{
+  font-size:15.5px;font-weight:600;color:#e4e4e4;letter-spacing:.04em;
+  transition:color .3s;
+}
+.footer-social a:hover{color:var(--lime)}
+.footer-brand{
+  margin:auto 0 0;
+  text-align:center;font-weight:900;text-transform:uppercase;
+  font-size:clamp(3rem,12vw,12rem);letter-spacing:-.03em;line-height:1.05;
+  padding:40px 0 20px;
+  color:#fff;
+  text-shadow:0 10px 60px rgba(0,0,0,.6);
+}
+.footer-bottom{
+  max-width:1280px;width:100%;margin:0 auto;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12.5px;color:#7a7a7a;
+}
+.footer-bottom a{transition:color .3s}
+.footer-bottom a:hover{color:#fff}
+@media(max-width:768px){
+  .footer{padding:96px 22px 22px}
+  .footer-right{text-align:left}
+  .footer-social{justify-content:flex-start;gap:22px}
+  .footer-brand{padding:60px 0 26px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="logo" href="#home">MC<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-title-wrap">
+    <h1 class="hero-title grad-text" id="scramble" aria-label="Portfolio">MURUGAVEL</h1>
+  </div>
+  <img class="hero-person" id="heroPerson" src="assets/hero.png" alt="Murugavel C - full body portrait">
+  <p class="hero-subtitle" id="heroSubtitle"><strong>Regulatory Affairs</strong><em class="serif-i">Quality Assurance</em></p>
+  <div class="hero-cta" id="heroCta">
+    <a class="cta-arrow" href="#contact" aria-label="Go to contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </a>
+    <a class="cta-pill" href="#contact">Contact</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-portrait">
+      <img src="assets/portrait.png" alt="Murugavel C - professional portrait">
+    </div>
+    <div class="about-right">
+      <h2 class="intro-heading grad-text reveal-heading">Intro</h2>
+      <div class="about-card">
+        <p id="aboutText">Hey, I'm Murugavel. An entry-level Medical Device QARA professional from Chennai, building my career in regulatory affairs and quality assurance. During my internships at Perfint Healthcare and Medfins International, I gained hands-on exposure to US FDA 510(k), CDSCO, ISO 13485, ISO 14971, FMEA and GS1/UDI documentation. I enjoy turning regulatory requirements into clean, audit-ready documentation - and I keep sharpening my regulatory judgment with every project.</p>
+      </div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-row"><div class="marquee-track" data-dup></div></div>
+    <div class="marquee-row rev"><div class="marquee-track" data-dup></div></div>
+    <div class="marquee-row"><div class="marquee-track" data-dup></div></div>
+    <div class="marquee-row rev"><div class="marquee-track" data-dup></div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-head">
+    <h2 class="services-heading grad-text reveal-heading">What I<br>Can Do</h2>
+  </div>
+  <div class="accordion">
+
+    <div class="service" id="svc1">
+      <button class="service-row" aria-expanded="false">
+        <span class="service-num">01</span>
+        <span class="service-title">Regulatory Submissions</span>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none"><path class="stroke" d="M4 20L20 4M8 4h12v12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
+      <div class="service-body">
+        <div class="service-cols">
+          <ul class="caps">
+            <li>510(k) device description &amp; substantial equivalence</li>
+            <li>Predicate research across FDA clearances</li>
+            <li>CDSCO MD-16 / MD-17 import licensing</li>
+            <li>NSWS portal submission work</li>
+            <li>GS1 / UDI registration</li>
+          </ul>
+          <div class="service-desc">
+            <p>Hands-on internship exposure to medical-device regulatory pathways - from drafting 510(k) Device Description and Substantial Equivalence sections to supporting CDSCO MD-16 test-import licence work on the NSWS portal, with GS1 / UDI registration activities.</p>
+            <a class="service-cta" href="#work">View Projects</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service" id="svc2">
+      <button class="service-row" aria-expanded="false">
+        <span class="service-num">02</span>
+        <span class="service-title">Quality Systems</span>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none"><path class="stroke" d="M4 20L20 4M8 4h12v12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
+      <div class="service-body">
+        <div class="service-cols">
+          <ul class="caps">
+            <li>ISO 13485 QMS documentation</li>
+            <li>Document control basics</li>
+            <li>Internal audit exposure</li>
+            <li>Change-control records - DCR, PCR, PCN, DCN</li>
+            <li>CAPA &amp; PMS documentation support</li>
+          </ul>
+          <div class="service-desc">
+            <p>Practical grounding in ISO 13485 quality-management documentation built across two internships - document control, internal-audit exposure and change-control records inside a working medical-device QMS, with ISO 13485 internal-auditor training.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service" id="svc3">
+      <button class="service-row" aria-expanded="false">
+        <span class="service-num">03</span>
+        <span class="service-title">Risk Management</span>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none"><path class="stroke" d="M4 20L20 4M8 4h12v12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
+      <div class="service-body">
+        <div class="service-cols">
+          <ul class="caps">
+            <li>ISO 14971 risk analysis</li>
+            <li>FMEA tables &amp; scoring</li>
+            <li>Hazard identification</li>
+            <li>Risk-control documentation</li>
+            <li>GSPR / classification rationale study</li>
+          </ul>
+          <div class="service-desc">
+            <p>ISO 14971 risk-management work performed during internship and independent practice - hazard identification, FMEA tables and risk-control documentation, plus MDR 2017 classification rationales built for real device categories.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="service" id="svc4">
+      <button class="service-row" aria-expanded="false">
+        <span class="service-num">04</span>
+        <span class="service-title">Device Documentation</span>
+        <span class="service-arrow"><svg viewBox="0 0 24 24" fill="none"><path class="stroke" d="M4 20L20 4M8 4h12v12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
+      <div class="service-body">
+        <div class="service-cols">
+          <ul class="caps">
+            <li>Device Master File documentation support</li>
+            <li>Technical file documentation</li>
+            <li>Labelling &amp; IFU preparation</li>
+            <li>Device description writing</li>
+            <li>UDI / regulatory data tools - GS1, NSWS, FDA eSTAR</li>
+          </ul>
+          <div class="service-desc">
+            <p>Assisted with Device Master File and labelling documents during internship, and built strong technical-file fundamentals - device descriptions, IFU content and the regulatory data tools that submissions run on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="work">
+  <div class="projects-header">
+    <h2 class="projects-title grad-text reveal-heading">Selected <span class="serif-i">work</span></h2>
+    <div class="projects-header-right">
+      <p>Regulatory and quality work from my internships and independent practice - real documentation exposure, described the way a fresher honestly can.</p>
+      <a class="pill-lime" href="https://github.com/murugavel-c" target="_blank" rel="noopener noreferrer">Read More ↗</a>
+    </div>
+  </div>
+
+  <article class="project">
+    <div class="project-media">
+      <div class="project-visual"><span class="pv-num">01</span><span class="pv-tag">Perfint Healthcare · Chennai</span></div>
+    </div>
+    <div class="project-info">
+      <span class="project-num">01</span>
+      <h3 class="project-title">QARA <span class="serif-i">internship</span> Perfint</h3>
+      <p class="project-desc">Three-month QARA internship at Perfint Healthcare, Chennai. Drafted Device Description and Substantial Equivalence sections for a Class II 510(k) submission cross-referencing predicate data, supported CDSCO MD-16 test-import licence work on the NSWS portal, and handled GS1 / UDI registration with ISO 13485 QMS documentation.</p>
+    </div>
+  </article>
+
+  <article class="project reverse">
+    <div class="project-media">
+      <div class="project-visual"><span class="pv-num">02</span><span class="pv-tag">Self-built · Study product</span></div>
+    </div>
+    <div class="project-info">
+      <span class="project-num">02</span>
+      <h3 class="project-title">QARA <span class="serif-i">study</span> Book</h3>
+      <p class="project-desc">Turned my handwritten QARA study notes into a structured, corrected study book for new students - regulators map, ISO 13485, ISO 14971 risk and FMEA, CAPA, change control, CDSCO and US FDA pathways, with flow charts and mock questions per section.</p>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-media">
+      <div class="project-visual"><span class="pv-num">03</span><span class="pv-tag">Personal site · GitHub Pages</span></div>
+    </div>
+    <div class="project-info">
+      <span class="project-num">03</span>
+      <h3 class="project-title">Portfolio <span class="serif-i">website</span></h3>
+      <p class="project-desc">Designed and built my recruiter-facing QARA portfolio and deployed it on GitHub Pages - internship experience, expertise areas and work samples, written with fresher-accurate wording that never overclaims.</p>
+      <div class="project-btns">
+        <a class="btn-lime" href="https://murugavel-c.github.io/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+        <a class="btn-ghost" href="https://github.com/murugavel-c/murugavel-c.github.io" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer class="footer" id="contact">
+  <div class="footer-bg"></div>
+  <div class="footer-veil"></div>
+
+  <div class="footer-top">
+    <div class="footer-left">
+      <span class="footer-label">Connect with me</span>
+      <a class="footer-email" href="mailto:murugavel57741@gmail.com">murugavel57741@gmail.com</a>
+      <nav class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#work">Projects</a>
+      </nav>
+    </div>
+    <div class="footer-right">
+      <h3>Let's build something</h3>
+      <p>Open to entry-level QARA, RA and QA roles. Based in Chennai, open to relocation across India. +91 73394 28649</p>
+      <a class="btn-white" href="mailto:murugavel57741@gmail.com">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="footer-social">
+    <a href="https://www.linkedin.com/in/murugavel-c-" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    <a href="https://github.com/murugavel-c" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <a href="mailto:murugavel57741@gmail.com">Email ↗</a>
+  </div>
+
+  <div class="footer-brand">Murugavel</div>
+
+  <div class="footer-bottom">
+    <span>© <span id="year">2026</span> Murugavel C. All rights reserved.</span>
+    <a href="#home">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var VERIFY = new URLSearchParams(location.search).has('verify');
+  var hasGsap = typeof gsap !== 'undefined';
+  if (hasGsap && typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+  /* ---- marquee content ---- */
+  var rows = [
+    ['US FDA 510(k)','CDSCO','MDR 2017','MD-16 / MD-17','NSWS Portal','GS1 / UDI','EU MDR','FDA eSTAR'],
+    ['ISO 13485','QMS Documentation','Internal Audit','CAPA','Change Control','Document Control'],
+    ['ISO 14971','FMEA','Risk Analysis','Risk Control','Hazard Identification','GSPR','PMS'],
+    ['Device Master File','Technical File','Labelling / IFU','Device Description','Predicate Analysis','Substantial Equivalence']
+  ];
+  var tracks = document.querySelectorAll('.marquee-track');
+  tracks.forEach(function(track, i){
+    var items = rows[i % rows.length];
+    var html = '';
+    for (var r = 0; r < 4; r++) {
+      items.forEach(function(s){ html += '<span>' + s + '</span><i>·</i>'; });
+    }
+    track.innerHTML = html;
+  });
+
+  /* ---- about word reveal spans ---- */
+  var aboutP = document.getElementById('aboutText');
+  var highlight = ['510(k)','CDSCO','ISO','13485,','14971,','FMEA','GS1/UDI','Perfint','Medfins','QARA'];
+  var words = aboutP.textContent.split(' ');
+  aboutP.innerHTML = words.map(function(w){
+    var strong = highlight.indexOf(w.replace(/[.,-]/g,'')) > -1 || highlight.indexOf(w) > -1;
+    return '<span class="w' + (strong ? ' hw' : '') + '">' + w + '</span>';
+  }).join(' ');
+
+  /* ---- scramble ---- */
+  var FROM = 'MURUGAVEL', TO = 'PORTFOLIO';
+  var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&@';
+  var el = document.getElementById('scramble');
+  var spans = [];
+  el.innerHTML = '';
+  for (var i = 0; i < FROM.length; i++) {
+    var s = document.createElement('span');
+    s.className = 'ch';
+    s.textContent = FROM[i];
+    el.appendChild(s);
+    spans.push(s);
+  }
+  function scrambleTo(done) {
+    var finished = 0;
+    spans.forEach(function(span, i){
+      var startDelay = i * 90;
+      var cycles = 8 + i * 2;
+      var c = 0;
+      setTimeout(function(){
+        var iv = setInterval(function(){
+          c++;
+          if (c >= cycles) {
+            clearInterval(iv);
+            span.textContent = TO[i];
+            finished++;
+            if (finished === spans.length && done) done();
+          } else {
+            span.textContent = CHARS[Math.floor(Math.random() * CHARS.length)];
+          }
+        }, 50);
+      }, startDelay);
+    });
+  }
+
+  /* ---- hero intro ---- */
+  var person = document.getElementById('heroPerson');
+  var titleWrap = document.querySelector('.hero-title-wrap');
+  var subtitle = document.getElementById('heroSubtitle');
+  var cta = document.getElementById('heroCta');
+  var isMobile = window.innerWidth < 768;
+
+  function finalState() {
+    spans.forEach(function(s, i){ s.textContent = TO[i]; });
+    titleWrap.style.top = isMobile ? '22%' : '45%';
+    if (hasGsap) {
+      gsap.set(person, {y: 0, xPercent: -50});
+      gsap.set([subtitle, cta], {opacity: 1, y: 0});
+    } else {
+      person.style.transform = 'translateX(-50%) translateY(0)';
+      subtitle.style.opacity = 1; cta.style.opacity = 1;
+    }
+    document.body.style.overflow = 'auto';
+  }
+
+  var introDone = false;
+  function startIntro() {
+    if (!hasGsap) { finalState(); return; }
+    setTimeout(function(){ if (!introDone) { introDone = true; finalState(); } }, 7500);
+    document.body.style.overflow = 'hidden';
+    gsap.set(person, {y: window.innerHeight * 1.1, xPercent: -50});
+    gsap.set([subtitle, cta], {opacity: 0, y: 50});
+    setTimeout(function(){
+      scrambleTo(function(){
+        setTimeout(function(){
+          var tl = gsap.timeline({onComplete: function(){ introDone = true; document.body.style.overflow = 'auto'; }});
+          tl.to(titleWrap, {top: isMobile ? '22%' : '45%', duration: 1.5, ease: 'power3.inOut'}, 0);
+          tl.to(person, {y: 0, duration: 1.5, ease: 'power3.out'}, 0);
+          tl.to([subtitle, cta], {opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', stagger: 0.2}, 0.35);
+        }, 400);
+      });
+    }, 1000);
+  }
+
+  /* ---- accordion ---- */
+  document.querySelectorAll('.service-row').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var svc = btn.parentElement;
+      var wasOpen = svc.classList.contains('open');
+      document.querySelectorAll('.service.open').forEach(function(o){
+        o.classList.remove('open');
+        o.querySelector('.service-row').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        svc.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ---- scroll animations ---- */
+  function initScroll() {
+    if (!hasGsap || typeof ScrollTrigger === 'undefined') return;
+
+    document.querySelectorAll('.reveal-heading').forEach(function(h){
+      gsap.fromTo(h, {opacity: 0, y: 100}, {
+        opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: {trigger: h, start: 'top 85%', toggleActions: 'play none none reverse'}
+      });
+    });
+    gsap.fromTo('.services-heading', {opacity: 0, y: -100}, {
+      opacity: 1, y: 0, duration: 1.2, ease: 'power3.out',
+      scrollTrigger: {trigger: '.services-heading', start: 'top 85%', toggleActions: 'play none none reverse'}
+    });
+
+    gsap.fromTo('#aboutText .w', {color: '#52525b', opacity: 0.2}, {
+      color: '#e8e8e8', opacity: 1, stagger: 0.1, ease: 'none',
+      scrollTrigger: {trigger: '.about-card', start: 'top 85%', end: 'bottom 50%', scrub: true}
+    });
+
+    document.querySelectorAll('.project').forEach(function(p){
+      var media = p.querySelector('.project-media');
+      var bits = p.querySelectorAll('.project-num, .project-title, .project-desc, .project-btns');
+      gsap.fromTo(media, {opacity: 0, y: 60}, {
+        opacity: 0.92, y: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: {trigger: p, start: 'top 82%', toggleActions: 'play none none reverse'}
+      });
+      gsap.fromTo(bits, {opacity: 0, y: 60}, {
+        opacity: 1, y: 0, duration: 1, ease: 'power3.out', stagger: 0.12,
+        scrollTrigger: {trigger: p, start: 'top 82%', toggleActions: 'play none none reverse'}
+      });
+    });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---- boot ---- */
+  if (VERIFY) {
+    finalState();
+    var st = document.createElement('style');
+    st.textContent = '.hero{min-height:900px !important}.footer{min-height:900px !important}*{transition:none !important;animation-duration:0s !important}';
+    document.head.appendChild(st);
+    document.documentElement.style.scrollBehavior = 'auto';
+    setTimeout(function(){
+      var hs = location.hash;
+      if (hs) { var t = document.querySelector(hs); if (t) window.scrollTo(0, t.getBoundingClientRect().top + window.pageYOffset); }
+    }, 200);
+    document.getElementById('svc1').classList.add('open');
+    document.querySelector('#svc1 .service-row').setAttribute('aria-expanded', 'true');
+  } else {
+    // preload hero image before intro
+    var pre = new Image();
+    pre.onload = startIntro;
+    pre.onerror = startIntro;
+    pre.src = 'assets/hero.png';
+    initScroll();
+    // safety: never leave scroll locked
+    setTimeout(function(){ document.body.style.overflow = 'auto'; }, 8000);
+  }
+})();
+</script>
+</body>
+</html>
